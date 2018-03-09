@@ -184,7 +184,7 @@ export default {
   }
 }
 @keyframes ani-up {
-  37% {
+  40% {
     transform: translate(0);
   }
   100% {
@@ -192,7 +192,7 @@ export default {
   }
 }
 @keyframes ani-down {
-  37% {
+  40% {
     transform: translate(0);
   }
   100% {
@@ -200,7 +200,7 @@ export default {
   }
 }
 @keyframes ani-left {
-  37% {
+  40% {
     transform: translate(0);
   }
   100% {
@@ -208,7 +208,7 @@ export default {
   }
 }
 @keyframes ani-right {
-  37% {
+  40% {
     transform: translate(0);
   }
   100% {
