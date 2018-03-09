@@ -1,0 +1,60 @@
+/* colors */
+$color-beige: #c6956a;
+$color-beigeLight: #ece9e7;
+$color-beigeLighter: #f3f0ed;
+$color-greyDarker: #444443;
+$color-greyDark: #333;
+$color-grey: #6f7072;
+$color-greyLight: #b7b6b4;
+$color-greyLighter: #d8d7d6;
+$color-greyLightest: #efefef;
+$color-white: #fff;
+$color-red: #ff3000;
+
+$Harvard: #c90016;
+$Harvard-self: #A40134;
+$Harvard-light: #c90016;
+$Hermes: #FD5E0F;
+$err-color: #ff3000;
+$neon-green: #bada55;
+$background-light: #F7F7F7;
+$background-dark: #191919;
+$background-dark-paint: #030303;
+$section-title: #a3a3a3;
+$neutral-gray: #7A7A7A;
+$react-color: #00d8ff;
+$node-color: #6cc24a;
+$express-color: #9f8cda;
+$psql-color: #316192;
+$skill-bar-color: #04C2C9;
+$skill-bar-container-color: rgb(194, 238, 240);
+$github-color: #800080;
+$heroku-color: #430098;
+$chrome-dev-color: #3680F7;
+$react-dev-color: #00D8ff;
+$postman-color: #FF931E;
+$webpack-color: #0052CF;
+$electron-color: #47949F;
+$socketio-color: #000000;
+$github-cat-color: #913399;
+$linkedin-color: #0077B5;
+
+/* fonts */
+$Proxima-Nova: 'Proxima Nova';
+$Proxima-Nova-LT: 'Proxima Nova LT';
+$Proxima-Nova-Upper: 'Proxima Nova Upper';
+$Proxima-Nova-Bold: 'Proxima Nova Bold';
+$Proxima-Nova-LT-Bold: 'Proxima Nova LT Bold';
+$Proxima-Nova-Alt: 'proxima_nova_altblack';
+
+$font-family-serif: "Freight Text Pro",serif;
+$font-family-sansSerif: "avenir",sans-serif;
+$font-family-base: var($font-family-sansSerif);
+
+
+/* media queries */
+$max-content-width: 1200px;
+$screen-xs-min: 480px;
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1300px;
