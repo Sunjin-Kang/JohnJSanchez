@@ -9,7 +9,8 @@
     "start": "node server",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "deploy": "git checkout -b deploy && npm run build && git add -A && git commit --allow-empty -m 'Deploying' && git push --force heroku deploy:master && git checkout master && git branch -D deploy"
+    "postinstall": "npm install express",
+    "deploy": "git checkout -b deploy && npm run build && git add -A && git commit --allow-empty -m 'Deploying' && git push --prefix dist heroku master && git checkout master && git branch -D deploy"
   },
   "dependencies": {
     "mailgun-js": "^0.16.0",
