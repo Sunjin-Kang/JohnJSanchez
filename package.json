@@ -9,7 +9,6 @@
     "start": "node server",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && webpack -p",
     "postinstall": "npm install express",
     "deploy": "git checkout -b deploy && node build/build.js && git add -f dist && git commit --allow-empty -m 'Deploying' && git push --force heroku deploy:master && git checkout master && git branch -D deploy"
   },
