@@ -2,14 +2,16 @@
   <div id="app" class='app'>
     <Nav v-show='$route.path !== "/"'/>
     <router-view />
+    <Footer v-show='$route.path !=="/"' />
   </div>
 </template>
 
 <script>
 import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
 export default {
   name: 'App',
-  components: { Nav }
+  components: { Nav, Footer }
 }
 </script>
 

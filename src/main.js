@@ -5,10 +5,9 @@ import App from '@/App.vue'
 
 Vue.config.productionTip = false
 
-const main = new Vue({
+new Vue({
   el: '#app',
   router,
   store,
   render: h => h(App)
-})
-main()
+}).$mount('#app')

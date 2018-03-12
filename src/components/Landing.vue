@@ -1,7 +1,9 @@
 <template>
   <transition appear appear-class='landing-appear' appear-active-class='landing-appear-active' appear-to-class='landing-appear-to'>
     <div class='landing'>
+      <transition appear appear-active-class='landing-bg-appear-active'>
       <div class='landing-bg' />
+      </transition>
 
       <transition appear appear-class='panel-appear' appear-active-class='panel-appear-active' appear-to-class='panel-appear-to'>
         <div class='panel'>
@@ -48,11 +50,11 @@
         </div>
 
         <ul class='media'>
-          <li
+          <!-- <li
             v-for='(link, i) in media'
             :key='i'>
             {{ link }}
-          </li>
+          </li> -->
         </ul>
       </div>
 
@@ -100,6 +102,9 @@ export default {
     background-position: 50% 50%;
     z-index: -1;
     filter: brightness(70%);
+    &-appear-active {
+      animation: hide 2s ease;
+    }
   }
   &-content {
     display: flex;
@@ -115,12 +120,10 @@ export default {
     // background-color: white;
   }
   &-appear-active {
-    transition: all 1.9s ease;
-    .landing-bg {
-      animation: hide 1.9s;
-      // visibility: hidden;
-      // background-image: none;
-    }
+    // transition: all 1.9s ease;
+    // .landing-bg {
+    //   animation: hide 1.9s;
+    // }
   }
   &-appear-to {
     // background-color: white;
@@ -140,16 +143,19 @@ export default {
     transform: translate(0, 0);
   }
   50% {
-    transform: translate(0, -25%);
+    transform: translate(0, -100vh);
+  }
+  51% {
+    transform: translate(0, -150vh);
   }
   60% {
-    transform: translate(0, -62.5%);
+    transform: translate(0, -150vh);
   }
   75% {
-    transform: translate(0, -62.5%);
+    transform: translate(0, -150vh);
   }
   100% {
-    transform: translate(0, -62.5%);
+    transform: translate(0, -150vh);
   }
 }
 @keyframes slide-down {
@@ -157,62 +163,65 @@ export default {
     transform: translate(0, 0);
   }
   50% {
-    transform: translate(0, 25%);
+    transform: translate(0, 100vh);
+  }
+  51% {
+    transform: translate(0, 150vh);
   }
   60% {
-    transform: translate(0, 62.5%);
+    transform: translate(0, 150vh);
   }
   75% {
-    transform: translate(0, 62.5%);
+    transform: translate(0, 150vh);
   }
   100% {
-    transform: translate(0, 62.5%);
+    transform: translate(0, 150vh);
   }
 }
 @keyframes rotate {
-  0% {
-    transform: rotate(0);
-  }
-  50% {
-    transform: rotate(0);
-  }
-  75% {
-    transform: rotate(-45deg);
-  }
-  100% {
-    transform: rotate(-45deg);
-  }
+  // 0% {
+  //   transform: rotate(0);
+  // }
+  // 50% {
+  //   transform: rotate(0);
+  // }
+  // 75% {
+  //   transform: rotate(45deg);
+  // }
+  // 100% {
+  //   transform: rotate(45deg);
+  // }
 }
 @keyframes ani-up {
-  40% {
+  35% {
     transform: translate(0);
   }
   100% {
-    transform: translate(-150%, -150%);
+    transform: translate(-150vw, -150vh);
   }
 }
 @keyframes ani-down {
-  40% {
+  35% {
     transform: translate(0);
   }
   100% {
-    transform: translate(150%, 150%);
+    transform: translate(150vw, 150vh);
   }
 }
 @keyframes ani-left {
-  40% {
+  35% {
     transform: translate(0);
   }
   100% {
-    transform: translate(-150%, 150%);
+    transform: translate(-150vw, 150vh);
   }
 }
 @keyframes ani-right {
-  40% {
+  35% {
     transform: translate(0);
   }
   100% {
-    transform: translate(150%, -150%);
+    transform: translate(150vw, -150vh);
   }
 }
 .panel {
@@ -220,11 +229,11 @@ export default {
   z-index: -1;
   top: 0;
   left: 0;
-  width:100%;
+  width: 100%;
   height: 100%;
   &-appear-active {
     .panel-l {
-      animation: slide-up 4s ease-out;
+      animation: slide-up 4s ease;
       &__top {
         animation: ani-left 6s ease;
       }
@@ -233,7 +242,7 @@ export default {
       }
     }
     .panel-r {
-      animation: slide-down 4s ease-out;
+      animation: slide-down 4s ease;
       &__top {
         animation: ani-up 6s ease;
       }
@@ -241,7 +250,7 @@ export default {
         animation: ani-right 6s ease;
       }
     }
-    animation: rotate 4s ease-out;
+    animation: rotate 4s ease;
   }
   &-appear {
   }
@@ -250,8 +259,8 @@ export default {
 }
 .panel-l, .panel-r {
   position: absolute;
-  width: 100%;
-  height: 400vh;
+  width: 200vw;
+  height: 200vh;
   z-index: -1;
   &__top, &__bot {
     position: absolute;
@@ -309,6 +318,7 @@ export default {
   font-weight: 100;
   letter-spacing: .2em;
 }
+
 .btn {
   display: inline-block;
   position: relative;
@@ -390,14 +400,13 @@ export default {
   width: .5em;
   height: 100%;
 }
-
-.media {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  > li {
-    display: inline-flex;
-    padding: 1em;
-  }
-}
+// .media {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   > li {
+//     display: inline-flex;
+//     padding: 1em;
+//   }
+// }
 </style>

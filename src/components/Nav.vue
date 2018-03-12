@@ -2,7 +2,7 @@
   <transition name='nav' mode='out-in'>
     <nav class='nav'>
       <div class='nav-wrapper'>
-        <router-link class='name' to='/'>
+        <router-link class='name' to='/' exact>
           {{ name }}
         </router-link>
         <ul class='nav-main'>
@@ -33,6 +33,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import '../scss/abstracts/variables';
 .nav-enter-active {
   transition: all 1s ease;
 }
@@ -49,9 +50,10 @@ export default {
   opacity: 1;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 10000;
   padding: 36px 0;
   width: 100%;
+  color: $color-greyDark;
   text-rendering: optimizeLegibility;
   &-wrapper {
     position: relative;
@@ -61,7 +63,7 @@ export default {
 }
 .name {
   position: absolute;
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   line-height: 36px;
   z-index: 1000;
 }
@@ -89,6 +91,7 @@ export default {
     border-bottom: 1px solid transparent;
     line-height: 1.2rem;
     padding-bottom: 4px;
+    color: $color-greyDark;
     &::after {
       content: '';
       position: absolute;

@@ -6,22 +6,23 @@
         <div
           v-for='(projectCol, i) in projects'
           :key='i'
-          :class='`projects-col-${i + 1}`'>
+          :class='`projects-${projectCol.colNum}`'>
           <div
-            v-for='(project, i) in projectCol.items'
+            v-for='(projectItem, i) in projectCol.items'
             :key='i'
             class='project'>
-            <router-link :to='project.name' append class='project-link'>
+            <router-link :to='projectItem.name' append>
               <div class='project-image'>
-                <img :src='project.photo'/>
+                <img :src='projectItem.photo'/>
               </div>
               <div class='project-text'>
-                <div class='project-info'>
-                  {{ project.name + ' : ' + project.date}}
-                </div>
+                <span class='project-info'>
+                  {{ projectItem.name + ' : ' + projectItem.date }}
+                </span>
               </div>
             </router-link>
           </div>
+
         </div>
       </div>
     </div>
@@ -36,11 +37,11 @@ export default {
     return {
       projects: [
         {
-          col: 'col-1',
+          colNum: 'col-1',
           items: [
             {
               name: 'Light Pillar',
-              photo: require('@/assets/images/lightPillar.jpg'),
+              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/579444936a49633f94994fbb/1469334689458/?format=2500w',
               date: 'fall 2018',
               professor: 'Alfie Koetter',
               course: 'Core-I',
@@ -49,102 +50,51 @@ export default {
             {
               name: 'proj2',
               photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/592fc9d19f745641ebf104f7/592fdf0415cf7daeb2973c92/1496309580041/TowersWithin_kvu_StudioLott_%23008BW.jpg?format=1000w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj3d onagoindfnbofdbndfbiooi',
-              photo: require('@/assets/images/album.jpg'),
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj4',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a490b3579fb3b02577a2a5/1487179974928/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj5',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a491ec20099eb288b95357/1487180403090/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj6',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/57c7655cebbd1a73645ce32a/57c7655d893fc0eab4b3179b/1472685408507/Fallbrook+House+-+Interior+View+%23001.jpg?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj7',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/57902bca3e00bebc2bdb4041/1469066259000/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj8',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/579440c3b8a79baa23c67651/1469333713226/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj9',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/57b939afebbd1a60cf789ad3/1471756733883/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            }
-          ]
-        },
-        {
-          col: 'col-2',
-          items: [
-            {
-              name: 'proj5',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a491ec20099eb288b95357/1487180403090/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj2',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/592fc9d19f745641ebf104f7/592fdf0415cf7daeb2973c92/1496309580041/TowersWithin_kvu_StudioLott_%23008BW.jpg?format=1000w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
               info: 'additional info'
             },
             {
               name: 'proj3',
               photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a490d8579fb3b02577a4c4/1487180018297/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
               info: 'additional info'
-            },
+            }
+          ]
+        },
+        {
+          colNum: 'col-2',
+          items: [
             {
               name: 'proj4',
               photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a490b3579fb3b02577a2a5/1487179974928/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
+              info: 'additional info'
+            },
+            {
+              name: 'proj5',
+              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a491ec20099eb288b95357/1487180403090/?format=2500w',
+              info: 'additional info'
+            },
+            {
+              name: 'proj6',
+              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/57c7655cebbd1a73645ce32a/57c7655d893fc0eab4b3179b/1472685408507/Fallbrook+House+-+Interior+View+%23001.jpg?format=2500w',
+              info: 'additional info'
+            }
+          ]
+        },
+        {
+          colNum: 'col-3',
+          items: [
+            {
+              name: 'proj7',
+              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/57902bca3e00bebc2bdb4041/1469066259000/?format=2500w',
+              info: 'additional info'
+            },
+            {
+              name: 'proj8',
+              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/579440c3b8a79baa23c67651/1469333713226/?format=2500w',
+              info: 'additional info'
+            },
+            {
+              name: 'proj9',
+              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/57b939afebbd1a60cf789ad3/1471756733883/?format=2500w',
               info: 'additional info'
             }
           ]
@@ -178,62 +128,42 @@ export default {
 .projects {
   margin: 0 auto;
   max-width: 1400px;
-  min-height: 100vh;
   width: calc(80% - 120px);
   &-grid {
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 90px;
     margin-left: -45px;
     margin-right: -45px;
   }
   &-col-1 {
-    float: left;
-    width: calc(100% * 2 / 3);
-    .project {
-      width: 50%;
-      &:nth-of-type(1) {
-        margin-top: 36px;
-      }
-    }
+    margin-top: 36px;
   }
   &-col-2 {
-    float: right;
-    width: calc(100% / 3);
-    .project {
-      width: 100%;
-      &:nth-of-type(1) {
-        margin-top: 72px;
-      }
-    }
+  }
+  &-col-3 {
+    margin-top: 72px;
   }
 }
 .project {
   margin-bottom: 60px;
-  padding-left: 45px;
-  padding-right: 45px;
   &-image {
     display: block;
     width: 100%;
     > img {
-      position: relative;
       width: 100%;
-      height: auto;
       filter: grayscale(100%);
       transition: filter .5s ease-out;
-
+      &:hover {
+        filter: grayscale(0);
+      }
     }
-  }
-  &:nth-of-type(odd) {
-    float: left;
-    clear: left;
-  }
-  &:nth-of-type(even) {
-    float: right;
-    clear: right;
   }
   &-text {
     position: relative;
-    text-align: left;
     margin-top: 10px;
+    text-align: left;
     overflow: hidden;
   }
   &-info {
@@ -257,37 +187,44 @@ export default {
       transform: translate3d(-100%, -1px, 0);
       transition: transform .4s cubic-bezier(1,0,0,1), opacity 0s cubic-bezier(.19,1,.22,1);
     }
-  }
-  &:hover {
-    .project-info::before {
-      transform: translate3d(100%, -1px, 0);
-      opacity: 1;
-    }
-    img {
-      filter: grayscale(0);
+    &:hover {
+      &::before {
+        transform: translate3d(100%, -1px, 0);
+        opacity: 1;
+      }
     }
   }
 }
+
 @media (max-width: $screen-lg-min) {
   .projects {
     width: calc(80% - 90px);
+    padding: 0 15px;
+    &-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 }
 @media (max-width: $screen-md-min) {
   .projects {
     width: calc(80% - 60px);
-    &-col-1, &-col-2 {
-      width: 100%;
-      .project {
-        width: 50%;
-        padding-left: 15px;
-        padding-right: 15px;
-      }
+    padding: 0 15px;
+    &-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 30px;
     }
-    &-col-2 {
-      .project:nth-of-type(2) {
-        // margin-top: 36px;
-      }
+    &-col-3 {
+      margin-top: 0;
+      // padding-top: 0;
+      // grid-column-start: 1;
+      // grid-column-end: 3;
+      // display: grid;
+      // grid-template-columns: 1fr 1fr;
+      // position: relative;
+      // grid-column-gap: 30px;
+      // .project:nth-of-type(even) {
+      //   transform: translateY(-72px);
+      // }
     }
   }
 }
@@ -296,22 +233,13 @@ export default {
     width: 100%;
     padding: 0 15px;
     &-grid {
+      grid-template-columns: 1fr;
       margin-left: 0;
       margin-right: 0;
     }
-    &-col-1, &-col-2 {
-      width: 100%;
-      .project {
-        width: 100%;
-        padding-left: 0;
-        padding-right: 0;
-        margin-bottom: 30px;
-        float: none;
-        &:first-child {
-          margin-top: 0;
-        }
-      }
-    }
+  }
+  .project {
+    margin-bottom: 30px;
   }
 }
 </style>
