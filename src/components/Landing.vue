@@ -1,22 +1,21 @@
 <template>
   <transition appear appear-class='landing-appear' appear-active-class='landing-appear-active' appear-to-class='landing-appear-to'>
     <div class='landing'>
-      <transition appear appear-active-class='landing-bg-appear-active'>
-      <div class='landing-bg' />
-      </transition>
+      <div class='landing-bg'>
+        <img :src='bg' />
+      </div>
 
-      <transition appear appear-class='panel-appear' appear-active-class='panel-appear-active' appear-to-class='panel-appear-to'>
-        <div class='panel'>
-          <div class='panel-l'>
-            <div class='panel-l__top'/>
-            <div class='panel-l__bot'/>
-          </div>
-          <div class='panel-r'>
-            <div class='panel-r__top'/>
-            <div class='panel-r__bot'/>
-          </div>
+      <div class='panel'>
+        <div class='panel-l'>
+          <div class='panel-l__top'/>
+          <div class='panel-l__bot'/>
         </div>
-      </transition>
+        <div class='panel-r'>
+          <div class='panel-r__top'/>
+          <div class='panel-r__bot'/>
+        </div>
+      </div>
+
       <div class='landing-content'>
         <div class='heading'>
           <h2 class='title'>{{ title }}</h2>
@@ -49,15 +48,7 @@
           <p>{{ buttonSubtext }}</p>
         </div>
 
-        <ul class='media'>
-          <!-- <li
-            v-for='(link, i) in media'
-            :key='i'>
-            {{ link }}
-          </li> -->
-        </ul>
       </div>
-
     </div>
   </transition>
 </template>
@@ -72,7 +63,7 @@ export default {
       name: 'John J Sanchez',
       buttonText: 'Selected Works',
       buttonSubtext: '2011 - 2018',
-      media: ['twitter?', 'linkedIn?', 'issuu?']
+      bg: require('@/assets/architecture/libraryRender.jpg')
     }
   },
   methods: {
@@ -86,43 +77,6 @@ export default {
 
 <style lang='scss' scoped>
 @import '../scss/abstracts/variables';
-
-.landing {
-  position: relative;
-  color: white;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  &-bg {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background-image: url('/static/img/libraryRender.e9c4b28.jpg');
-    background-size: cover;
-    background-position: 50% 50%;
-    z-index: -1;
-    // filter: brightness(70%);
-    &-appear-active {
-      animation: hide 2s ease;
-    }
-  }
-  &-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: 100vw;
-    height: 100vh;
-    padding: 36px;
-    // border: 16px solid $color-beigeLighter;
-  }
-  &-appear {
-  }
-  &-appear-active {
-  }
-  &-appear-to {
-  }
-}
 /* animations */
 @keyframes hide {
   0% {
@@ -218,14 +172,41 @@ export default {
     transform: translate(150vw, -150vh);
   }
 }
-.panel {
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.landing {
+  position: relative;
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  &-bg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    // filter: brightness(70%);
+    > img {
+      position: absolute;
+      min-width: 100%;
+      min-height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 36px;
+    // border: 16px solid $color-beigeLighter;
+  }
   &-appear-active {
+    .landing-bg {
+      animation: hide 2s ease;
+    }
     .panel-l {
       animation: slide-up 4s ease;
       &__top {
@@ -244,57 +225,70 @@ export default {
         animation: ani-right 6s ease;
       }
     }
-    animation: 4s ease;
+    animation: 6s ease;
+  }
+  &-appear {
+  }
+  &-appear-to {
   }
 }
-.panel-l, .panel-r {
+.panel {
   position: absolute;
-  width: 200vw;
-  height: 200vh;
   z-index: -1;
-  &__top, &__bot {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  &-l, &-r {
     position: absolute;
-    height: 50%;
-    width: 100%;
+    width: 200vw;
+    height: 200vh;
+    z-index: -1;
+    &__top, &__bot {
+      position: absolute;
+      height: 50%;
+      width: 100%;
+    }
+    &__top {
+      background-color: inherit;
+      top: 0;
+    }
+    &__bot {
+      background-color: inherit;
+      bottom: 0;
+    }
   }
-  &__top {
-    background-color: inherit;
-    top: 0;
+  &-l {
+    right: 50%;
+    top: 100vh;
+    background-color: transparent;
+    > div {
+      background-color: $color-beigeLight;
+    }
   }
-  &__bot {
-    background-color: inherit;
-    bottom: 0;
-  }
-}
-.panel-l {
-  right: 50%;
-  top: 100vh;
-  background-color: transparent;
-  > div {
-    background-color: $color-beigeLight;
-  }
-}
-.panel-r {
-  left: 50%;
-  bottom: 100vh;
-  background-color: transparent;
-  > div {
-    background-color: $color-beigeLighter;
+  &-r {
+    left: 50%;
+    bottom: 100vh;
+    background-color: transparent;
+    > div {
+      background-color: $color-beigeLighter;
+    }
   }
 }
 /* Intro Info */
 .heading {
-  letter-spacing: .1em;
+  position: absolute;
+  top: 36px;
+  letter-spacing: .15em;
   text-align: center;
   .title {
     font-weight: 100;
-    letter-spacing: .1em;
+    letter-spacing: .15em;
   }
   .subtitle {
     font-weight: 100;
   }
 }
-
 .main {
   display: flex;
   flex-direction: column;
@@ -390,13 +384,4 @@ export default {
   width: .5em;
   height: 100%;
 }
-// .media {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   > li {
-//     display: inline-flex;
-//     padding: 1em;
-//   }
-// }
 </style>

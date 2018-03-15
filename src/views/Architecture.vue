@@ -1,7 +1,7 @@
 <template>
   <section class='architecture'>
-    <transition appear appear-active-class='bg-appear-active'>
-      <div class='bg'>
+    <transition appear appear-active-class='panel-appear-active'>
+      <div class='panel'>
         <div class='panel-l'/>
         <div class='panel-r'/>
       </div>
@@ -109,16 +109,6 @@ export default {
 
 <style lang='scss' scoped>
 @import '../scss/abstracts/variables';
-
-.architecture {
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 360px;
-  padding-top: 300px;
-  z-index: 100;
-  color: $color-greyDark;
-  background-color: $color-beigeLighter;
-}
 @keyframes panel-l {
   0% {
     transform: translate(0, 100vh);
@@ -135,7 +125,40 @@ export default {
     transform: translate(0, 0);
   }
 }
-.bg {
+@keyframes slide-up {
+  0% {
+    transform: translate(0, 110%);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(0, 110%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.architecture {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 360px;
+  padding-top: 300px;
+  z-index: 100;
+  color: $color-greyDark;
+  background-color: $color-beigeLighter;
+}
+.panel {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -201,30 +224,7 @@ export default {
     }
   }
 }
-@keyframes slide-up {
-  0% {
-    transform: translate(0, 110%);
-    opacity: 0;
-  }
-  60% {
-    transform: translate(0, 110%);
-    opacity: 0;
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
+
 .project {
   margin-bottom: 60px;
   padding-left: 45px;
@@ -259,7 +259,8 @@ export default {
     display: inline-block;
     position: relative;
     text-transform: uppercase;
-    font-size: .8rem;
+    font-size: .66rem;
+    font-weight: lighter;
     letter-spacing: .12rem;
     overflow: hidden;
     transition: all .4s cubic-bezier(.645,.045,.355,1);

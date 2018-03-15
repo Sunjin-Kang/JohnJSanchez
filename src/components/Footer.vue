@@ -37,7 +37,8 @@ export default {
   padding: 36px;
   z-index: -100;
   background-color: $color-greyDark;
-  color: white;
+  color: black;
+  background-color: white;
   &-wrapper {
     position: relative;
     width: 100%;
