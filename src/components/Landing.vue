@@ -1,70 +1,85 @@
 <template>
-  <transition appear appear-class='landing-appear' appear-active-class='landing-appear-active' appear-to-class='landing-appear-to'>
-    <div class='landing'>
-      <div class='landing-bg'>
-        <img :src='bg' />
-      </div>
-
-      <div class='panel'>
-        <div class='panel-l'>
-          <div class='panel-l__top'/>
-          <div class='panel-l__bot'/>
-        </div>
-        <div class='panel-r'>
-          <div class='panel-r__top'/>
-          <div class='panel-r__bot'/>
-        </div>
-      </div>
-
-      <div class='landing-content'>
-        <div class='heading'>
-          <h2 class='title'>{{ title }}</h2>
-          <h5 class='subtitle'>{{ subtitle }}</h5>
+  <Loading v-if='loading'/>
+  <div v-else>
+    <transition appear appear-class='landing-appear' appear-active-class='landing-appear-active' appear-to-class='landing-appear-to'>
+      <div class='landing'>
+        <div class='landing-bg'>
+          <img :src='bg' />
         </div>
 
-        <div class='main'>
-          <h1 class='name'>{{ name }}</h1>
-          <router-link class='btn' to='Architecture'>
-            <div class='btn-txt'>
-              <span class='btn-txt__default'>
-                <span
-                  v-for='(letter, i) in buttonText'
-                  :key='i'
-                  :class='{ "space": letter == " " }'
-                  :style="translateY(-100)">
-                  {{ letter }}
+        <div class='panel'>
+          <div class='panel-l'>
+            <div class='panel-l__top'/>
+            <div class='panel-l__bot'/>
+          </div>
+          <div class='panel-r'>
+            <div class='panel-r__top'/>
+            <div class='panel-r__bot'/>
+          </div>
+        </div>
+
+        <div class='landing-content'>
+          <div class='heading'>
+            <h2 class='title'>{{ title }}</h2>
+            <h5 class='subtitle'>{{ subtitle }}</h5>
+          </div>
+
+          <div class='main'>
+            <h1 class='name'>{{ name }}</h1>
+            <router-link class='btn' to='Architecture'>
+              <div class='btn-txt'>
+                <span class='btn-txt__default'>
+                  <span
+                    v-for='(letter, i) in buttonText'
+                    :key='i'
+                    :class='{ "space": letter == " " }'
+                    :style="translateY(-100)">
+                    {{ letter }}
+                  </span>
                 </span>
-              </span>
-              <span class='btn-txt__hover'>
-                <span
-                  v-for='(letter, i) in buttonText'
-                  :key='i'
-                  :class='{ "space": letter == " " }'
-                  :style="translateY(30)">
-                  {{ letter }}</span>
-              </span>
-            </div>
-          </router-link>
-          <p>{{ buttonSubtext }}</p>
-        </div>
+                <span class='btn-txt__hover'>
+                  <span
+                    v-for='(letter, i) in buttonText'
+                    :key='i'
+                    :class='{ "space": letter == " " }'
+                    :style="translateY(30)">
+                    {{ letter }}</span>
+                </span>
+              </div>
+            </router-link>
+            <p>{{ buttonSubtext }}</p>
+          </div>
 
+        </div>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </div>
 </template>
 
 <script>
+import Loading from './Loading'
+import axios from 'axios'
+
 export default {
   name: 'Landing',
+  components: { Loading },
   data () {
     return {
+      loading: false,
       title: 'Architecture Design',
       subtitle: 'Columbia GSAPP',
       name: 'John J Sanchez',
       buttonText: 'Selected Works',
       buttonSubtext: '2011 - 2018',
-      bg: require('@/assets/architecture/libraryRender.jpg')
+      bg: 'https://i.imgur.com/cDg2Mex.jpg'
     }
+  },
+  created () {
+    this.loading = true
+    axios.get('https://i.imgur.com/cDg2Mex.jpg')
+      .then(res => {
+        this.loading = false
+      })
   },
   methods: {
     translateY: function (val) {

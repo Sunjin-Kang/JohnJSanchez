@@ -12,7 +12,7 @@
     <h1 class='name'>{{ name }}</h1>
     <h5 class='school'>{{ school }}</h5>
     <p class='biography'>
-      Hi world! My name is John and I was born and raised in Long Island. After attending the University at Buffalo and receiving my Bachelors of Science in Architecture I moved back to Long Island to pursue graduate study.
+      Hi world! My name is John, and I was born and raised in Long Island. After attending the University at Buffalo and receiving my Bachelors of Science in Architecture, I moved back to Long Island to pursue graduate study.
       <br/>
       <br/>
       I’m currently enrolled in Columbia University’s Graduate School of Architecture, Planning and Preservation pursuing my Master of Architecture degree. Enjoy the site!
@@ -87,10 +87,11 @@ export default {
 .biography {
   font-family: garamond;
   width: 50%;
-  padding: 30px 15px;
+  padding: 30px;
   margin: 0 auto;
   text-align: left;
-  line-height: 1.5;
+  font-size: 1.2rem;
+  line-height: 2;
 }
 @media (max-width: $screen-lg-min) {
 }

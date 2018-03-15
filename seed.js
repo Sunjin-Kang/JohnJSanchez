@@ -11,7 +11,7 @@ const architectures = [
     date: 'Spring 2017',
     course: 'Core II',
     description: 'Lorem Ipsum Description',
-    url: ''
+    images: ['url']
   },
   {
     name: 'Light Pillar',
@@ -19,7 +19,7 @@ const architectures = [
     date: 'Fall 2016',
     course: 'Core I',
     description: 'Lorem Ipsum Description',
-    url: ''
+    images: ['url']
   },
   {
     name: 'Light Forms',
@@ -27,7 +27,7 @@ const architectures = [
     date: 'Fall 2016',
     course: 'Core I',
     description: 'Lorem Ipsum Description',
-    url: ''
+    images: ['url']
   },
   {
     name: 'Eclipsed',
@@ -35,7 +35,7 @@ const architectures = [
     date: 'Fall 2016',
     course: 'Core I',
     description: 'Lorem Ipsum Description',
-    url: ''
+    images: ['url']
   },
   {
     name: 'Library for the Illiterate',
@@ -43,7 +43,7 @@ const architectures = [
     date: 'Spring 2017',
     course: 'Core I',
     description: 'Lorem Ipsum Description',
-    url: ''
+    images: ['url']
   },
   {
     name: 'Library for the Illiterate',
@@ -51,25 +51,27 @@ const architectures = [
     date: 'Spring 2017',
     course: 'Core I',
     description: 'Lorem Ipsum Description',
-    url: ''
+    images: ['url']
   }
 ]
 
 const concepts = [
   {
-
+    name: 'Taipei Performing Arts Center',
+    image: 'url'
   }
 ]
 
 
-const seed = () =>
-  Promise.all(architectures.map(architecture => Architecture.create(architecture))
+const seed = () => {
+  Promise.all(architectures.map(architecture =>
+    Architecture.create(architecture))
   )
   .then(() =>
   Promise.all(concepts.map(concept =>
     Concept.create(concept))
-  )
-);
+  ))
+}
 
 const main = () => {
   console.log('Syncing db...', db.config.database)

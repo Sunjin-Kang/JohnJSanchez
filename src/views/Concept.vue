@@ -70,7 +70,7 @@ export default {
 .concept {
   position: relative;
   overflow: hidden;
-  padding-top: 300px;
+  padding-top: 240px;
   margin-bottom: 360px;
   color: $color-greyDark;
   padding-bottom: 30px;

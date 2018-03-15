@@ -16,6 +16,5 @@ const Concept = require('./concept')
  */
 module.exports = {
   Architecture,
-  Concept,
-  Photos
+  Concept
 }

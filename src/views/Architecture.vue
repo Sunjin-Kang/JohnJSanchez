@@ -1,5 +1,6 @@
 <template>
-  <section class='architecture'>
+  <Loading v-if='loading' />
+  <section v-else class='architecture'>
     <transition appear appear-active-class='panel-appear-active'>
       <div class='panel'>
         <div class='panel-l'/>
@@ -17,16 +18,15 @@
             :key='i'
             class='project'>
             <transition appear appear-active-class='project-appear-active' appear-class='project-appear' appear-to-class='project-appear-to'>
-              <router-link :to='project.name' append class='project-link'>
-
-                  <div class='project-image'>
-                    <img :src='project.photo'/>
+              <router-link :to='{name: "Project", params: { project: project.name }}' class='project-link'>
+                <div class='project-image'>
+                  <img :src='project.photo'/>
+                </div>
+                <div class='project-text'>
+                  <div class='project-info'>
+                    {{ project.name + ' : ' + project.date}}
                   </div>
-                  <div class='project-text'>
-                    <div class='project-info'>
-                      {{ project.name + ' : ' + project.date}}
-                    </div>
-                  </div>
+                </div>
               </router-link>
             </transition>
           </div>
@@ -37,18 +37,38 @@
 </template>
 
 <script>
+import Loading from '@/components/Loading'
+import axios from 'axios'
 
 export default {
   name: 'Architecture',
+  components: { Loading },
+  created () {
+    this.loading = true
+    Promise.all(this.projects[0].items.map(project => {
+      axios.get(project.photo)
+        .then(res => res.data)
+        .catch(e => console.error(e))
+    }))
+      .then(() => {
+        Promise.all(this.projects[1].items.map(project => {
+          axios.get(project.photo)
+            .then(res => res.data)
+            .catch(e => console.error(e))
+        }))
+      })
+      .catch(err => console.error(err))
+  },
   data () {
     return {
+      loading: false,
       projects: [
         {
           col: 'col-1',
           items: [
             {
               name: 'Library for the Illiterate',
-              photo: require('@/assets/architecture/libraryIlliterate.jpg'),
+              photo: 'https://i.imgur.com/cq1pLYK.jpg',
               date: 'Spring 2017',
               professor: 'Christoph Kumpusch',
               course: 'Core-II',
@@ -56,7 +76,7 @@ export default {
             },
             {
               name: 'Light Pillar',
-              photo: require('@/assets/architecture/lightPillar.jpg'),
+              photo: 'https://i.imgur.com/KiyarU4.jpg',
               date: 'Fall 2016',
               professor: 'Alfie Koetter',
               course: 'Core-I',
@@ -64,7 +84,7 @@ export default {
             },
             {
               name: 'Eclipsed',
-              photo: require('@/assets/architecture/eclipsed.jpg'),
+              photo: 'https://i.imgur.com/dLXDgVZ.jpg',
               date: 'Fall 2016',
               professor: 'Alfie Koetter',
               course: 'Core-I',
@@ -85,7 +105,7 @@ export default {
           items: [
             {
               name: 'Light Forms',
-              photo: require('@/assets/architecture/lightForms.jpg'),
+              photo: 'https://i.imgur.com/Xy1KDSN.jpg',
               date: 'Fall 2016',
               professor: 'Alfie Koetter',
               course: 'Core-I',
@@ -153,7 +173,7 @@ export default {
   position: relative;
   overflow: hidden;
   margin-bottom: 360px;
-  padding-top: 300px;
+  padding-top: 240px;
   z-index: 100;
   color: $color-greyDark;
   background-color: $color-beigeLighter;
@@ -319,8 +339,8 @@ export default {
       }
     }
     &-col-2 {
-      .project:nth-of-type(2) {
-        // margin-top: 36px;
+      .project:nth-of-type(1) {
+        margin-top: -144px;
       }
     }
   }

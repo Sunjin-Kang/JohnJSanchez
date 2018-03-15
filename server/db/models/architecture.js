@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-db.define('architecture', {
+module.exports = db.define('architecture', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
@@ -27,4 +27,3 @@ db.define('architecture', {
     allowNull: false
   }
 })
-module.exports(db)

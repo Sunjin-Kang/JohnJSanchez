@@ -3,6 +3,7 @@ const PORT = process.env.PORT || 8888
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const db = require('./db')
 
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
@@ -41,5 +42,8 @@ const startApp = () => {
   })
 }
 
+const syncDb = () => db.sync()
+
+syncDb()
 createApp()
 startApp()

@@ -13,7 +13,8 @@
               tag='li'
               v-for='(link, i) in links'
               :key='i'
-              :to='link'>
+              :to='link'
+              exact>
                 <a>{{ link }}</a>
             </router-link>
           </ul>
@@ -60,7 +61,7 @@ export default {
   top: 0;
   left: 0;
   z-index: 10000;
-  padding: 72px 0;
+  padding: 36px 0;
   width: 100%;
   color: $color-greyDark;
   text-rendering: optimizeLegibility;

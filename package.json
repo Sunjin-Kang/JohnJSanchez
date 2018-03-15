@@ -13,6 +13,7 @@
     "deploy": "git checkout -b deploy && node build/build.js && git add -f dist && git commit --allow-empty -m 'Deploying' && git push --force heroku deploy:master && git checkout master && git branch -D deploy"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "mailgun-js": "^0.16.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
