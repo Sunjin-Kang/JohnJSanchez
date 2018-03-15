@@ -1,6 +1,11 @@
 <template>
-  <div class='architecture'>
-    <div class='bg' />
+  <section class='architecture'>
+    <transition appear appear-active-class='bg-appear-active'>
+      <div class='bg'>
+        <div class='panel-l'/>
+        <div class='panel-r'/>
+      </div>
+    </transition>
     <div class='projects'>
       <div class='projects-grid'>
         <div
@@ -11,21 +16,24 @@
             v-for='(project, i) in projectCol.items'
             :key='i'
             class='project'>
-            <router-link :to='project.name' append class='project-link'>
-              <div class='project-image'>
-                <img :src='project.photo'/>
-              </div>
-              <div class='project-text'>
-                <div class='project-info'>
-                  {{ project.name + ' : ' + project.date}}
-                </div>
-              </div>
-            </router-link>
+            <transition appear appear-active-class='project-appear-active' appear-class='project-appear' appear-to-class='project-appear-to'>
+              <router-link :to='project.name' append class='project-link'>
+
+                  <div class='project-image'>
+                    <img :src='project.photo'/>
+                  </div>
+                  <div class='project-text'>
+                    <div class='project-info'>
+                      {{ project.name + ' : ' + project.date}}
+                    </div>
+                  </div>
+              </router-link>
+            </transition>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -39,72 +47,32 @@ export default {
           col: 'col-1',
           items: [
             {
+              name: 'Library for the Illiterate',
+              photo: require('@/assets/architecture/libraryIlliterate.jpg'),
+              date: 'Spring 2017',
+              professor: 'Christoph Kumpusch',
+              course: 'Core-II',
+              info: 'additional info'
+            },
+            {
               name: 'Light Pillar',
-              photo: require('@/assets/images/lightPillar.jpg'),
-              date: 'fall 2018',
+              photo: require('@/assets/architecture/lightPillar.jpg'),
+              date: 'Fall 2016',
               professor: 'Alfie Koetter',
               course: 'Core-I',
               info: 'additional info'
             },
             {
-              name: 'proj2',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/592fc9d19f745641ebf104f7/592fdf0415cf7daeb2973c92/1496309580041/TowersWithin_kvu_StudioLott_%23008BW.jpg?format=1000w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj3d onagoindfnbofdbndfbiooi',
-              photo: require('@/assets/images/album.jpg'),
-              date: 'fall 2018',
+              name: 'Eclipsed',
+              photo: require('@/assets/architecture/eclipsed.jpg'),
+              date: 'Fall 2016',
               professor: 'Alfie Koetter',
               course: 'Core-I',
               info: 'additional info'
             },
             {
               name: 'proj4',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a490b3579fb3b02577a2a5/1487179974928/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj5',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a491ec20099eb288b95357/1487180403090/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj6',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/57c7655cebbd1a73645ce32a/57c7655d893fc0eab4b3179b/1472685408507/Fallbrook+House+-+Interior+View+%23001.jpg?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj7',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/57902bca3e00bebc2bdb4041/1469066259000/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj8',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/579440c3b8a79baa23c67651/1469333713226/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj9',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/57b939afebbd1a60cf789ad3/1471756733883/?format=2500w',
+              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/592fc9d19f745641ebf104f7/592fdf0415cf7daeb2973c92/1496309580041/TowersWithin_kvu_StudioLott_%23008BW.jpg?format=1000w',
               date: 'fall 2018',
               professor: 'Alfie Koetter',
               course: 'Core-I',
@@ -116,31 +84,15 @@ export default {
           col: 'col-2',
           items: [
             {
-              name: 'proj5',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a491ec20099eb288b95357/1487180403090/?format=2500w',
-              date: 'fall 2018',
+              name: 'Light Forms',
+              photo: require('@/assets/architecture/lightForms.jpg'),
+              date: 'Fall 2016',
               professor: 'Alfie Koetter',
               course: 'Core-I',
               info: 'additional info'
             },
             {
-              name: 'proj2',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/592fc9d19f745641ebf104f7/592fdf0415cf7daeb2973c92/1496309580041/TowersWithin_kvu_StudioLott_%23008BW.jpg?format=1000w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj3',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a490d8579fb3b02577a4c4/1487180018297/?format=2500w',
-              date: 'fall 2018',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj4',
+              name: 'proj6',
               photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a490b3579fb3b02577a2a5/1487179974928/?format=2500w',
               date: 'fall 2018',
               professor: 'Alfie Koetter',
@@ -162,18 +114,61 @@ export default {
   position: relative;
   overflow: hidden;
   margin-bottom: 360px;
-  padding-top: 290px;
+  padding-top: 300px;
   z-index: 100;
   color: $color-greyDark;
+  background-color: $color-beigeLighter;
+}
+@keyframes panel-l {
+  0% {
+    transform: translate(0, 100vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes panel-r {
+  0% {
+    transform: translate(0, -100vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 .bg {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background-color: $color-beigeLight;
+  background-color: white;
+  opacity: 0;
+  display: none;
   z-index: -1;
+  .panel-l, .panel-r {
+    position: absolute;
+    width: 50%;
+    height: 100vh;
+    top: 0;
+    background-color: $color-beigeLighter;
+  }
+  .panel-l {
+    left: 0;
+  }
+  .panel-r {
+    right: 0;
+  }
+  &-appear-active {
+    opacity: 1;
+    display: block;
+    .panel-l {
+      animation: 2s panel-l ease;
+    }
+    .panel-r {
+      animation: 2s panel-r ease;
+    }
+    animation: 2s ease;
+  }
 }
 .projects {
   margin: 0 auto;
@@ -206,6 +201,30 @@ export default {
     }
   }
 }
+@keyframes slide-up {
+  0% {
+    transform: translate(0, 110%);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(0, 110%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .project {
   margin-bottom: 60px;
   padding-left: 45px;
@@ -213,13 +232,13 @@ export default {
   &-image {
     display: block;
     width: 100%;
+    overflow: hidden;
     > img {
       position: relative;
       width: 100%;
       height: auto;
       filter: grayscale(100%);
       transition: filter .5s ease-out;
-
     }
   }
   &:nth-of-type(odd) {
@@ -255,7 +274,7 @@ export default {
       bottom: 0;
       opacity: 0;
       transform: translate3d(-100%, -1px, 0);
-      transition: transform .4s cubic-bezier(1,0,0,1), opacity 0s cubic-bezier(.19,1,.22,1);
+      transition: transform .6s cubic-bezier(1,0,0,1), opacity 0s cubic-bezier(.19,1,.22,1);
     }
   }
   &:hover {
@@ -266,6 +285,20 @@ export default {
     img {
       filter: grayscale(0);
     }
+  }
+  &-appear {
+  }
+  &-appear-active {
+    img {
+      animation: slide-up 4s ease;
+    }
+    animation: 2s ease;
+    .project-text {
+      animation: fade-in 4s ease;
+    }
+    transition: all 4s ease;
+  }
+  &-appear-to {
   }
 }
 @media (max-width: $screen-lg-min) {
@@ -292,6 +325,9 @@ export default {
   }
 }
 @media (max-width: $screen-sm-min) {
+  .architecture {
+    padding-top: 15px;
+  }
   .projects {
     width: 100%;
     padding: 0 15px;

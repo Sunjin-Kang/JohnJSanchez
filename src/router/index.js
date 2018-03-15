@@ -6,6 +6,7 @@ import Architecture from '@/views/Architecture.vue'
 import Concept from '@/views/Concept.vue'
 import About from '@/views/About.vue'
 import Contact from '@/views/Contact.vue'
+import Project from '@/components/Project.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const router = new VueRouter({
       path: '/Architecture',
       name: 'Architecture',
       component: Architecture
+    },
+    {
+      path: '/Architecture/:project',
+      name: 'Project',
+      component: Project
     },
     {
       path: '/Concept',

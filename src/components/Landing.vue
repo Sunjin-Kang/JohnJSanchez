@@ -97,11 +97,11 @@ export default {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-image: url('https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/579444936a49633f94994fbb/1469334689458/?format=2500w');
+    background-image: url('/static/img/libraryRender.e9c4b28.jpg');
     background-size: cover;
     background-position: 50% 50%;
     z-index: -1;
-    filter: brightness(70%);
+    // filter: brightness(70%);
     &-appear-active {
       animation: hide 2s ease;
     }
@@ -117,16 +117,10 @@ export default {
     // border: 16px solid $color-beigeLighter;
   }
   &-appear {
-    // background-color: white;
   }
   &-appear-active {
-    // transition: all 1.9s ease;
-    // .landing-bg {
-    //   animation: hide 1.9s;
-    // }
   }
   &-appear-to {
-    // background-color: white;
   }
 }
 /* animations */
@@ -179,18 +173,18 @@ export default {
   }
 }
 @keyframes rotate {
-  // 0% {
-  //   transform: rotate(0);
-  // }
-  // 50% {
-  //   transform: rotate(0);
-  // }
-  // 75% {
-  //   transform: rotate(45deg);
-  // }
-  // 100% {
-  //   transform: rotate(45deg);
-  // }
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(0);
+  }
+  75% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
 }
 @keyframes ani-up {
   35% {
@@ -250,11 +244,7 @@ export default {
         animation: ani-right 6s ease;
       }
     }
-    animation: rotate 4s ease;
-  }
-  &-appear {
-  }
-  &-appear-to {
+    animation: 4s ease;
   }
 }
 .panel-l, .panel-r {

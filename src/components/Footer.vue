@@ -1,11 +1,16 @@
 <template>
   <footer class='footer'>
-    <h1>
-      this is the footer
-    </h1>
-    <p>
-      contact info/additional info/copyrights/credits
-    </p>
+    <div class='footer-wrapper'>
+
+      <div class='right'>
+        <p>
+        Copyright © John J Sanchez 2018
+        </p>
+        <p class='credits'>
+          Design by Sun Jin<a href='http://sunjin.io' target='_blank' class='link'><img :src='sLogo' class='s-logo'/></a>
+        </p>
+      </div>
+    </div>
   </footer>
 </template>
 
@@ -14,8 +19,8 @@ export default {
   name: 'Footer',
   data () {
     return {
-      name: 'John J Sanchez',
-      links: ['Architecture', 'Concept', 'About', 'Contact']
+      sLogo: require('@/assets/images/sunLogo.png'),
+      name: 'John J Sanchez'
     }
   }
 }
@@ -31,5 +36,27 @@ export default {
   left: 0;
   padding: 36px;
   z-index: -100;
+  background-color: $color-greyDark;
+  color: white;
+  &-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+}
+.right {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  bottom: 0;
+}
+.credits {
+  position: relative;
+}
+.s-logo {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  width: 24px;
 }
 </style>
