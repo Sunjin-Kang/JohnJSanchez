@@ -3,7 +3,7 @@ const PORT = process.env.PORT || 8888
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
-const db = require('./db')
+// const db = require('./db')
 
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
@@ -41,10 +41,10 @@ const startApp = () => {
     console.log(`~~~~~~~~ Server Listening On PORT: ${PORT} ~~~~~~~~`)
   })
 }
-const syncDb = () => db.sync()
+// const syncDb = () => db.sync()
 
 const start = async () => {
-  await syncDb()
+  // await syncDb()
   console.log('Tables created!')
   await createApp()
   return startApp()
