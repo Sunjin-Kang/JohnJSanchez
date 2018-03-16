@@ -63,7 +63,7 @@ export default {
       .then(() => {
         setTimeout(() => {
           this.loading = false
-        }, 5000)
+        }, 2500)
       })
       .catch(err => console.error(err))
   },
