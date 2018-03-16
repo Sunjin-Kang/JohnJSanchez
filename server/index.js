@@ -3,7 +3,7 @@ const PORT = process.env.PORT || 8888
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
-// const db = require('./db')
+const db = require('./db')
 
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
@@ -17,7 +17,7 @@ const createApp = () => {
   app.use(bodyParser.urlencoded({ extended: true }))
 
   // api routes
-  // app.use('/api', require('./api'))
+  app.use('/api', require('./api'))
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '../dist')))
@@ -41,9 +41,12 @@ const startApp = () => {
     console.log(`~~~~~~~~ Server Listening On PORT: ${PORT} ~~~~~~~~`)
   })
 }
+const syncDb = () => db.sync()
 
-// const syncDb = () => db.sync()
-
-// syncDb()
-createApp()
-startApp()
+const start = async () => {
+  await syncDb()
+  console.log('Tables created!')
+  await createApp()
+  return startApp()
+}
+start()

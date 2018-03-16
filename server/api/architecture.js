@@ -3,7 +3,7 @@ module.exports = router
 const { Architecture } = require('../db/models')
 
 router.get('/', (req, res, next) => {
-  Architecture.findAll({include: [{all: true, nexted: true}]})
+  Architecture.findAll({})
     .then(projects => res.json(projects))
     .catch(next)
 })

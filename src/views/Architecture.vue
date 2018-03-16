@@ -53,9 +53,17 @@ export default {
       .then(() => {
         Promise.all(this.projects[1].items.map(project => {
           axios.get(project.photo)
-            .then(res => res.data)
+            .then(res => {
+              return res.data
+              // this.loading = false
+            })
             .catch(e => console.error(e))
         }))
+      })
+      .then(() => {
+        setTimeout(() => {
+          this.loading = false
+        }, 5000)
       })
       .catch(err => console.error(err))
   },
@@ -113,7 +121,7 @@ export default {
             },
             {
               name: 'proj6',
-              photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a490b3579fb3b02577a2a5/1487179974928/?format=2500w',
+              photo: '',
               date: 'fall 2018',
               professor: 'Alfie Koetter',
               course: 'Core-I',
@@ -148,11 +156,9 @@ export default {
 @keyframes slide-up {
   0% {
     transform: translate(0, 110%);
-    opacity: 0;
   }
   60% {
     transform: translate(0, 110%);
-    opacity: 0;
   }
   100% {
     transform: translate(0, 0);
@@ -205,12 +211,12 @@ export default {
     opacity: 1;
     display: block;
     .panel-l {
-      animation: 2s panel-l ease;
+      animation: 1s panel-l cubic-bezier(1,.66,.66,1);
     }
     .panel-r {
-      animation: 2s panel-r ease;
+      animation: 1s panel-r cubic-bezier(1,.66,.66,1);
     }
-    animation: 2s ease;
+    animation: 1s ease;
   }
 }
 .projects {
@@ -311,13 +317,13 @@ export default {
   }
   &-appear-active {
     img {
-      animation: slide-up 4s ease;
+      animation: slide-up 4s ease-in-out;
     }
     animation: 2s ease;
     .project-text {
       animation: fade-in 4s ease;
     }
-    transition: all 4s ease;
+    transition: all 6s ease;
   }
   &-appear-to {
   }
