@@ -1,5 +1,7 @@
 <template>
-  <section class='about'>
+  <Loading v-if='loading'/>
+  <section v-else class='about'>
+    <Nav />
     <div class='bg' />
     <div class='grid'>
       <span
@@ -21,15 +23,25 @@
 </template>
 
 <script>
-
+// import axios from 'axios'
+import Loading from '@/components/Loading'
+import Nav from '@/components/Nav'
 export default {
   name: 'Concept',
+  components: { Loading, Nav },
+  created () {
+    this.loading = true
+    setTimeout(() => {
+      this.loading = false
+    }, 1000)
+  },
   data () {
     return {
       name: 'John Sanchez',
       gridName: 'JOHNJSANCHEZ',
       profilePic: require('@/assets/images/profilePic.jpg'),
-      school: 'Columbia GSAPP'
+      school: 'Columbia GSAPP',
+      loading: false
     }
   }
 }

@@ -6,8 +6,9 @@
         <p>
         Copyright © John J Sanchez 2018
         </p>
+        <br/>
         <p class='credits'>
-          Design by Sun Jin<a href='http://sunjin.io' target='_blank' class='link'><img :src='sLogo' class='s-logo'/></a>
+          Design by <a href='http://sunjin.io' target='_blank' class='link'>Sun Jin<img :src='sLogo' class='s-logo'/></a>
         </p>
       </div>
     </div>
@@ -19,7 +20,7 @@ export default {
   name: 'Footer',
   data () {
     return {
-      sLogo: require('@/assets/images/sunLogo.png'),
+      sLogo: require('@/assets/images/S-21.png'),
       name: 'John J Sanchez'
     }
   }

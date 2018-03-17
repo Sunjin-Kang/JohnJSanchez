@@ -1,72 +1,80 @@
 <template>
   <Loading v-if='loading' />
-  <section v-else class='architecture'>
-    <transition appear appear-active-class='panel-appear-active'>
-      <div class='panel'>
-        <div class='panel-l'/>
-        <div class='panel-r'/>
-      </div>
-    </transition>
-    <div class='projects'>
-      <div class='projects-grid'>
-        <div
-          v-for='(projectCol, i) in projects'
-          :key='i'
-          :class='`projects-col-${i + 1}`'>
-          <div
-            v-for='(project, i) in projectCol.items'
-            :key='i'
-            class='project'>
-            <transition appear appear-active-class='project-appear-active' appear-class='project-appear' appear-to-class='project-appear-to'>
-              <router-link :to='{name: "Project", params: { project: project.name }}' class='project-link'>
-                <div class='project-image'>
-                  <img :src='project.photo'/>
-                </div>
-                <div class='project-text'>
-                  <div class='project-info'>
-                    {{ project.name + ' : ' + project.date}}
+  <div v-else>
+    <Nav />
+    <transition appear appear-active-class='architecture-appear-active'>
+      <section class='architecture'>
+        <div class='panel'>
+          <div class='panel-l'/>
+          <div class='panel-r'/>
+        </div>
+        <div class='projects'>
+          <div class='projects-grid'>
+            <div
+              v-for='(projectCol, i) in projects'
+              :key='i'
+              :class='`projects-col-${i + 1}`'>
+              <div
+                v-for='(project, i) in projectCol.items'
+                :key='i'
+                class='project'>
+                <router-link :to='{name: "Project", params: { project: project.link }}' class='project-link'>
+                  <div class='project-image'>
+                    <img :src='project.photo'/>
                   </div>
-                </div>
-              </router-link>
-            </transition>
+                  <div class='project-text'>
+                    <div class='project-info'>
+                      {{ project.name + ' : ' + project.date}}
+                    </div>
+                  </div>
+                </router-link>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    </transition>
+  </div>
 </template>
 
 <script>
 import Loading from '@/components/Loading'
-import axios from 'axios'
+import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
+// import axios from 'axios'
 
 export default {
   name: 'Architecture',
-  components: { Loading },
-  created () {
-    this.loading = true
-    Promise.all(this.projects[0].items.map(project => {
-      axios.get(project.photo)
-        .then(res => res.data)
-        .catch(e => console.error(e))
-    }))
-      .then(() => {
-        Promise.all(this.projects[1].items.map(project => {
-          axios.get(project.photo)
-            .then(res => {
-              return res.data
-              // this.loading = false
-            })
-            .catch(e => console.error(e))
-        }))
-      })
-      .then(() => {
-        setTimeout(() => {
-          this.loading = false
-        }, 2500)
-      })
-      .catch(err => console.error(err))
+  components: { Loading, Nav, Footer },
+  mounted () {
+    window.addEventListener('load', () => {
+      this.loading = false
+    })
   },
+  // created () {
+  //   this.loading = true
+  //   Promise.all(this.projects[0].items.map(project => {
+  //     axios.get(project.photo)
+  //       .then(res => res.data)
+  //       .catch(e => console.error(e))
+  //   }))
+  //     .then(() => {
+  //       Promise.all(this.projects[1].items.map(project => {
+  //         axios.get(project.photo)
+  //           .then(res => {
+  //             return res.data
+  //             // this.loading = false
+  //           })
+  //           .catch(e => console.error(e))
+  //       }))
+  //     })
+  //     .then(() => {
+  //       setTimeout(() => {
+  //         this.loading = false
+  //       }, 1000)
+  //     })
+  //     .catch(err => console.error(err))
+  // },
   data () {
     return {
       loading: false,
@@ -76,6 +84,7 @@ export default {
           items: [
             {
               name: 'Library for the Illiterate',
+              link: 'Library-for-the-Illiterate',
               photo: 'https://i.imgur.com/cq1pLYK.jpg',
               date: 'Spring 2017',
               professor: 'Christoph Kumpusch',
@@ -84,6 +93,7 @@ export default {
             },
             {
               name: 'Light Pillar',
+              link: 'Light-Pillar',
               photo: 'https://i.imgur.com/KiyarU4.jpg',
               date: 'Fall 2016',
               professor: 'Alfie Koetter',
@@ -92,6 +102,7 @@ export default {
             },
             {
               name: 'Eclipsed',
+              link: 'Eclipsed',
               photo: 'https://i.imgur.com/dLXDgVZ.jpg',
               date: 'Fall 2016',
               professor: 'Alfie Koetter',
@@ -99,7 +110,8 @@ export default {
               info: 'additional info'
             },
             {
-              name: 'proj4',
+              name: 'proj5',
+              link: 'proj5',
               photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/592fc9d19f745641ebf104f7/592fdf0415cf7daeb2973c92/1496309580041/TowersWithin_kvu_StudioLott_%23008BW.jpg?format=1000w',
               date: 'fall 2018',
               professor: 'Alfie Koetter',
@@ -113,16 +125,9 @@ export default {
           items: [
             {
               name: 'Light Forms',
+              link: 'Light-Forms',
               photo: 'https://i.imgur.com/Xy1KDSN.jpg',
               date: 'Fall 2016',
-              professor: 'Alfie Koetter',
-              course: 'Core-I',
-              info: 'additional info'
-            },
-            {
-              name: 'proj6',
-              photo: '',
-              date: 'fall 2018',
               professor: 'Alfie Koetter',
               course: 'Core-I',
               info: 'additional info'
@@ -137,7 +142,7 @@ export default {
 
 <style lang='scss' scoped>
 @import '../scss/abstracts/variables';
-@keyframes panel-l {
+@keyframes panel-l-in {
   0% {
     transform: translate(0, 100vh);
   }
@@ -145,7 +150,7 @@ export default {
     transform: translate(0, 0);
   }
 }
-@keyframes panel-r {
+@keyframes panel-r-in {
   0% {
     transform: translate(0, -100vh);
   }
@@ -157,7 +162,7 @@ export default {
   0% {
     transform: translate(0, 110%);
   }
-  60% {
+  50% {
     transform: translate(0, 110%);
   }
   100% {
@@ -168,7 +173,7 @@ export default {
   0% {
     opacity: 0;
   }
-  50% {
+  75% {
     opacity: 0;
   }
   100% {
@@ -183,6 +188,27 @@ export default {
   z-index: 100;
   color: $color-greyDark;
   background-color: $color-beigeLighter;
+  &-appear-active {
+    .panel {
+      opacity: 1;
+      display: block;
+    }
+    .panel-l {
+      animation: 1s panel-l-in cubic-bezier(.5,0,.5,1);
+    }
+    .panel-r {
+      animation: 1s panel-r-in cubic-bezier(.5,0,.5,1);
+    }
+    .project {
+      img {
+        animation: slide-up 3s ease;
+      }
+      &-text {
+        animation: fade-in 3s ease;
+      }
+    }
+    animation: 3s;
+  }
 }
 .panel {
   position: fixed;
@@ -206,17 +232,6 @@ export default {
   }
   .panel-r {
     right: 0;
-  }
-  &-appear-active {
-    opacity: 1;
-    display: block;
-    .panel-l {
-      animation: 1s panel-l cubic-bezier(1,.66,.66,1);
-    }
-    .panel-r {
-      animation: 1s panel-r cubic-bezier(1,.66,.66,1);
-    }
-    animation: 1s ease;
   }
 }
 .projects {
@@ -312,20 +327,6 @@ export default {
     img {
       filter: grayscale(0);
     }
-  }
-  &-appear {
-  }
-  &-appear-active {
-    img {
-      animation: slide-up 4s ease-in-out;
-    }
-    animation: 2s ease;
-    .project-text {
-      animation: fade-in 4s ease;
-    }
-    transition: all 6s ease;
-  }
-  &-appear-to {
   }
 }
 @media (max-width: $screen-lg-min) {

@@ -1,21 +1,21 @@
 <template>
-  <transition name='nav' mode='out-in'>
+  <transition appear appear-active-class='nav-appear-active'>
     <nav class='nav'>
       <div class='nav-wrapper'>
-        <router-link class='name' to='/' exact>
+        <router-link class='nav-name' to='/' exact>
           {{ name }}
         </router-link>
         <button :class='btnActive ? "btn active" : "btn"' @click='btnHandler'><span class='btn-1'><span class='btn-1-1'/></span></button>
         <div :class='!btnActive ? "nav-menu active" : "nav-menu"'>
           <ul class='nav-main'>
             <router-link
-              class='link'
+              class='nav-link'
               tag='li'
               v-for='(link, i) in links'
               :key='i'
               :to='link'
               exact>
-                <a>{{ link }}</a>
+              <a>{{ link }}</a>
             </router-link>
           </ul>
         </div>
@@ -29,7 +29,7 @@ export default {
   name: 'Nav',
   data () {
     return {
-      name: 'John J Sanchez',
+      name: 'John Sanchez',
       links: ['Architecture', 'Concept', 'About', 'Contact'],
       btnActive: false
     }
@@ -44,17 +44,19 @@ export default {
 
 <style lang='scss' scoped>
 @import '../scss/abstracts/variables';
-.nav-enter-active {
-  transition: all 1s ease;
+@keyframes nav-in {
+  0% {
+    transform: translate(0, -30%);
+    opacity: 0;
+  }
+  75% {
+    transform: translate(0, -30%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
-.nav-leave-active {
-  transition: all 1s ease;
-}
-.nav-enter, .nav-leave-to {
-  transform: translateY(-100%);
-  opacity: 0;
-}
-
 .nav {
   position: absolute;
   opacity: 1;
@@ -79,13 +81,16 @@ export default {
     height: 36px;
     line-height: 36px;
   }
-}
-.name {
-  position: absolute;
-  font-size: 1.25rem;
-  line-height: 36px;
-  z-index: 1000;
-  left: 60px;
+  &-name {
+    position: absolute;
+    font-size: 1.25rem;
+    line-height: 36px;
+    z-index: 1000;
+    left: 60px;
+  }
+  &-appear-active {
+    animation: nav-in 3s ease-out;
+  }
 }
 .btn {
   float: right;
@@ -149,7 +154,7 @@ export default {
     }
   }
 }
-.link {
+.nav-link {
   display: inline-block;
   height: 36px;
   font-size: .72rem;
@@ -187,27 +192,25 @@ export default {
   }
 }
 @media (max-width: $screen-lg-min) {
-  .name {
-    left: 45px;
-  }
   .nav {
+    &-name {
+      left: 45px;
+    }
     &-wrapper {
       padding: 0 45px;
     }
   }
-  .nav-main {
-  }
-  .link {
+  .nav-link {
     &:not(:last-child) {
       margin-right: 30px;
     }
   }
 }
 @media (max-width: $screen-md-min) {
-  .name {
-    left: 30px;
-  }
   .nav {
+    &-name {
+      left: 30px;
+    }
     &-wrapper {
       padding: 0 30px;
     }
@@ -222,10 +225,6 @@ export default {
   }
 }
 @media (max-width: $screen-sm-min) {
-  .name {
-    left: 0;
-    padding: 15px;
-  }
   .btn {
     display: block;
   }
@@ -234,6 +233,10 @@ export default {
     padding: 0;
     background-color: #fff;
     height: 60px;
+    &-name {
+      left: 0;
+      padding: 15px;
+    }
     &-wrapper {
       padding: 0;
     }
@@ -260,7 +263,7 @@ export default {
       margin-left: 0;
     }
   }
-  .link {
+  .nav-link {
     display: block;
     height: auto;
     margin-left: 0;

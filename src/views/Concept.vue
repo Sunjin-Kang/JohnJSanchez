@@ -1,14 +1,18 @@
 <template>
-  <div class='concept'>
-    <div class='bg' />
-    <div class='concepts'>
-      <div class='concepts-grid'>
-        <div
-          v-for='(concept, i) in concepts'
-          :key='i'
-          class='design'
-          >
-          <img :src='concept.photo' />
+  <Loading v-if='loading' />
+  <div v-else >
+    <Nav />
+    <div class='concept'>
+      <div class='bg' />
+      <div class='concepts'>
+        <div class='concepts-grid'>
+          <div
+            v-for='(concept, i) in concepts'
+            :key='i'
+            class='design'
+            >
+            <img :src='concept.photo' />
+          </div>
         </div>
       </div>
     </div>
@@ -16,11 +20,14 @@
 </template>
 
 <script>
-
+import Loading from '@/components/Loading'
+import Nav from '@/components/Nav'
 export default {
   name: 'Concept',
+  components: { Loading, Nav },
   data () {
     return {
+      loading: false,
       concepts: [
         {
           name: 'Light Pillar',
@@ -61,6 +68,12 @@ export default {
         }
       ]
     }
+  },
+  mounted () {
+    this.loading = true
+    setTimeout(() => {
+      this.loading = false
+    }, 1250)
   }
 }
 </script>
