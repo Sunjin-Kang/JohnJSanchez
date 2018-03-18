@@ -187,6 +187,41 @@ export default {
     transform: translate(150vw, -150vh);
   }
 }
+@keyframes starry-night {
+  0% {
+    filter: brightness(100%);
+  }
+  10% {
+    filter: brightness(80%);
+  }
+  20% {
+    filter: brightness(75%);
+  }
+  30%{
+    filter: brightness(60%);
+  }
+  40% {
+    filter: brightness(50%);
+  }
+  50% {
+    filter: brightness(65%);
+  }
+  60% {
+    filter: brightness(85%);
+  }
+  70% {
+    filter: brightness(115%);
+  }
+  80% {
+    filter: brightness(150%);
+  }
+  90% {
+    filter: brightness(140%);
+  }
+  100% {
+    filter: brightness(120%);
+  }
+}
 .landing {
   position: relative;
   color: white;
@@ -198,7 +233,7 @@ export default {
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    // filter: brightness(70%);
+    animation: starry-night 10s ease-in-out infinite alternate;
     > img {
       position: absolute;
       min-width: 100%;

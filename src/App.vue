@@ -1,6 +1,5 @@
 <template>
   <div id="app" class='app'>
-    <!-- <Nav v-show='$route.path !== "/"'/> -->
     <transition name='router' mode='out-in'>
       <router-view />
     </transition>
@@ -9,23 +8,11 @@
 </template>
 
 <script>
-import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import Loading from '@/components/Loading'
 
 export default {
   name: 'App',
-  components: { Nav, Footer, Loading },
-  data () {
-    return {
-      loading: false
-    }
-  },
-  mounted () {
-    window.addEventListener('load', () => {
-      this.loading = false
-    })
-  }
+  components: { Footer }
 }
 </script>
 
@@ -55,7 +42,7 @@ export default {
   15% {
     transform: translate(0, 0);
   }
-  50% {
+  60% {
     transform: translate(0, -100vh);
   }
   100% {
@@ -69,7 +56,7 @@ export default {
   15% {
     transform: translate(0, 0);
   }
-  50% {
+  60% {
     transform: translate(0, 100vh);
   }
   100% {
@@ -80,7 +67,7 @@ export default {
   0% {
     transform: translate(0, 0);
   }
-  33% {
+  40% {
     transform: translate(0, 110%);
   }
   100% {
@@ -94,7 +81,7 @@ export default {
   10% {
     opacity: 1;
   }
-  33% {
+  40% {
     opacity: 0;
   }
   100% {
@@ -102,17 +89,6 @@ export default {
   }
 }
 .router-enter-active {
-  // .panel {
-  //   opacity: 1 !important;
-  //   display: block !important;
-  // }
-  // .panel-l {
-  //   animation: 1s panel-l-in cubic-bezier(.66,0,.33,1);
-  // }
-  // .panel-r {
-  //   animation: 1s panel-r-in cubic-bezier(.66,0,.33,1);
-  // }
-  // animation: 5s ease;
 }
 .router-leave-active {
   .nav {
@@ -123,20 +99,20 @@ export default {
     display: block !important;
   }
   .panel-l {
-    animation: 2s panel-l-out ease-in-out;
+    animation: 2.5s panel-l-out ease-in-out;
   }
   .panel-r {
-    animation: 2s panel-r-out ease-in-out;
+    animation: 2.5s panel-r-out ease-in-out;
   }
   .project {
     img {
-      animation: project-out 2s ease;
+      animation: project-out 2.5s ease;
     }
     &-info {
-      animation: project-text-out 2s ease;
+      animation: project-text-out 2.5s ease;
     }
   }
-  animation: 1.5s;
+  animation: 2s;
 }
 /* Global Reset & Overrides */
 *,

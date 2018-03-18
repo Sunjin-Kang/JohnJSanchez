@@ -4,6 +4,7 @@
     <Nav />
     <div class='concept'>
       <div class='bg' />
+
       <div class='concepts'>
         <div class='concepts-grid'>
           <div
@@ -30,21 +31,21 @@ export default {
       loading: false,
       concepts: [
         {
-          name: 'Light Pillar',
-          photo: require('@/assets/architecture/lightPillar.jpg')
+          name: 'Taipei Performance Arts Center',
+          photo: 'https://i.imgur.com/XFmwSa8.jpg'
 
         },
         {
-          name: 'proj2',
-          photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/592fc9d19f745641ebf104f7/592fdf0415cf7daeb2973c92/1496309580041/TowersWithin_kvu_StudioLott_%23008BW.jpg?format=1000w'
+          name: 'Taipei Performance Arts Center',
+          photo: 'https://i.imgur.com/N5l1U9a.jpg'
         },
         {
-          name: 'proj3d onagoindfnbofdbndfbiooi',
-          photo: require('@/assets/architecture/album.jpg')
+          name: 'Taipei Performance Arts Center',
+          photo: 'https://i.imgur.com/GRCT7uF.jpg'
         },
         {
-          name: 'proj4',
-          photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a490b3579fb3b02577a2a5/1487179974928/?format=2500w'
+          name: 'Taipei Performance Arts Center',
+          photo: 'https://i.imgur.com/43HK6WU.jpg'
         },
         {
           name: 'proj5',
@@ -56,15 +57,11 @@ export default {
         },
         {
           name: 'proj7',
-          photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/57902bca3e00bebc2bdb4041/1469066259000/?format=2500w'
+          photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/592fc9d19f745641ebf104f7/592fdf0415cf7daeb2973c92/1496309580041/TowersWithin_kvu_StudioLott_%23008BW.jpg?format=1000w'
         },
         {
           name: 'proj8',
           photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/579440c3b8a79baa23c67651/1469333713226/?format=2500w'
-        },
-        {
-          name: 'proj9',
-          photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/57b939afebbd1a60cf789ad3/1471756733883/?format=2500w'
         }
       ]
     }
@@ -87,12 +84,14 @@ export default {
   margin-bottom: 360px;
   color: $color-greyDark;
   padding-bottom: 30px;
+  background-color: white;
+  border-bottom: 2px solid #efefef;
 }
 .bg {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: $color-greyLightest;
+  // background-color: $color-greyLightest;
   top: 0;
   left: 0;
   z-index: -1;
@@ -111,9 +110,9 @@ export default {
   width: 50%;
   // margin-bottom: 15px;
   padding: 15px;
-    > img {
+  > img {
     width: 100%;
-    filter: grayscale(100%);
+    filter: grayscale(100%) contrast(105%);
     transition: filter .3s ease;
     &:hover {
       filter: grayscale(0);
@@ -142,9 +141,22 @@ export default {
   }
 }
 @media (max-width: $screen-sm-min) {
+  .concept {
+    padding-top: 15px;
+  }
   .concepts {
     width: 100%;
     padding: 0 15px;
+    &-grid {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .design {
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+      float: none;
+    }
   }
 }
 
