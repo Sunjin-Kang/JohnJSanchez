@@ -85,7 +85,7 @@ export default {
   color: $color-greyDark;
   padding-bottom: 30px;
   background-color: white;
-  border-bottom: 2px solid #efefef;
+  border-bottom: 1px solid #efefef;
 }
 .bg {
   position: absolute;
@@ -108,7 +108,6 @@ export default {
 }
 .design {
   width: 50%;
-  // margin-bottom: 15px;
   padding: 15px;
   > img {
     width: 100%;

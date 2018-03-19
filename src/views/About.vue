@@ -1,77 +1,313 @@
 <template>
   <Loading v-if='loading'/>
-  <section v-else class='about'>
+  <div v-else>
     <Nav />
-    <div class='bg' />
-    <div class='grid'>
-      <span
-        v-for='(letter, i) in gridName'
-        :key='i'
-        class='letter'>
-        {{ letter }}
-      </span>
-    </div>
-    <h1 class='name'>{{ name }}</h1>
-    <h5 class='school'>{{ school }}</h5>
-    <p class='biography'>
-      Hi world! My name is John, and I was born and raised in Long Island. After attending the University at Buffalo and receiving my Bachelors of Science in Architecture, I moved back to Long Island to pursue graduate study.
-      <br/>
-      <br/>
-      I’m currently enrolled in Columbia University’s Graduate School of Architecture, Planning and Preservation pursuing my Master of Architecture degree. Enjoy the site!
-    </p>
-  </section>
+    <transition appear appear-active-class='about-appear-active'>
+      <section class='about'>
+        <div class='tiles'>
+          <div v-for='i in 8' :key='i' :class='`tile tile-${i}`'/>
+        </div>
+        <div class='stripes'>
+          <div v-for='i in 8' :key='i' :class='`stripe stripe-${i}`'/>
+        </div>
+        <div class='grid'>
+          <span
+            v-for='(letter, i) in gridName'
+            :key='i'
+            :class='`letter letter-${gridOrder[i]}`'>
+            {{ letter }}
+          </span>
+        </div>
+        <h1 class='name'>{{ name }}</h1>
+        <h5 class='school'>{{ school }}</h5>
+        <p class='biography'>
+          John was born and raised in Long Island. After receiving his Bachelors of Science in Architecture from the University at Buffalo, he returned to Long Island to pursue graduate study.
+          <br/>
+          <br/>
+          John is currently enrolled in Columbia University’s Graduate School of Architecture, Planning and Preservation pursuing a degree in Master of Architecture.
+        </p>
+      </section>
+    </transition>
+  </div>
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 import Loading from '@/components/Loading'
 import Nav from '@/components/Nav'
 export default {
   name: 'Concept',
   components: { Loading, Nav },
-  created () {
-    this.loading = true
-    setTimeout(() => {
+  mounted () {
+    window.addEventListener('load', () => {
       this.loading = false
-    }, 1000)
+    })
   },
   data () {
     return {
       name: 'John Sanchez',
       gridName: 'JOHNJSANCHEZ',
-      profilePic: require('@/assets/images/profilePic.jpg'),
+      gridOrder: [3,7,2,6,12,10,8,1,9,4,5,11],
       school: 'Columbia GSAPP',
+      profilePic: require('@/assets/images/profilePic.jpg'),
       loading: false
     }
+  },
+  beforeCreate () {
+    this.loading = true
+    axios.get('https://i.imgur.com/Mdzlh9y.jpg')
+      .then(() => this.loading = false)
   }
 }
 </script>
 
 <style lang='scss' scoped>
 @import '../scss/abstracts/variables';
+@keyframes tiles {
+  0%, 100% {
+    z-index: 0;
+    opacity: 1;
+  }
+}
+@keyframes tile-up {
+  0% {
+    transform: translate(0, 100vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes tile-down {
+  0% {
+    transform: translate(0, -100vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes stripes {
+  0%, 100% {
+    z-index: 1;
+    opacity: 1;
+  }
+}
+@keyframes stripe-left {
+  0% {
+    background-color: $color-greyLightest;
+  }
+  100% {
+    transform: translate(100vw, 0);
+    background-color: $color-greyLightest;
+  }
+}
+@keyframes stripe-right {
+  0% {
+    background-color: $color-greyLightest;
+  }
+  100% {
+    transform: translate(-100vw, 0);
+    background-color: $color-greyLightest;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes letter-in {
+  0% {
+    background-color: $color-greyLightest;
+    color: $color-greyLightest;
+  }
+  50% {
+    background-color: $color-greyLightest;
+    color: $color-greyLightest;
+  }
+  80% {
+    color: white;
+  }
+  100% {
+  }
+}
+@keyframes letter-out-1 {
+  0% {
+  }
+  5% {
+    color: white;
+  }
+  25% {
+    background-color: $color-greyLightest;
+    color: $color-greyLightest;
+  }
+  100% {
+    color: $color-greyLightest;
+    background-color: $color-greyLightest;
+  }
+}
+@keyframes letter-out-2 {
+  0% {
+  }
+  20% {
+    color: white;
+  }
+  40% {
+    background-color: $color-greyLightest;
+    color: $color-greyLightest;
+  }
+  100% {
+    color: $color-greyLightest;
+    background-color: $color-greyLightest;
+  }
+}
+@keyframes letter-out-3 {
+  0% {
+  }
+  10% {
+    color: white;
+  }
+  50% {
+    background-color: $color-greyLightest;
+    color: $color-greyLightest;
+  }
+  100% {
+    color: $color-greyLightest;
+    background-color: $color-greyLightest;
+  }
+}
+@for $i from 1 through 12 {
+  .letter-#{$i} {
+    animation-duration: $i * .25 + 2 + s !important;
+  }
+}
+.router-leave-active {
+  .nav {
+    animation-duration: 5s !important;
+  }
+  .name, .school, .biography {
+    animation: fade-out 2s ease;
+  }
+  .letter {
+    &-1, &-4, &-7, &-10 {
+      animation: letter-out-1 2s ease;
+    }
+    &-2, &-5, &-8, &-11 {
+      animation: letter-out-2 2s ease;
+    }
+    &-3, &-6, &-9, &-12 {
+      animation: letter-out-2 2s ease;
+    }
+  }
+  .stripes {
+    display: block !important;
+    opacity: 1 !important;
+    animation: stripes 3s ease;
+    animation-delay: 1.5s;
+  }
+  .stripe {
+    background-color: white !important;
+    &:nth-of-type(odd) {
+      animation: stripe-right 1.5s ease-in-out;
+      animation-delay: 1.5s;
+    }
+    &:nth-of-type(even) {
+      animation: stripe-left 1.5s ease-in-out;
+      animation-delay: 1.5s;
+    }
+  }
+  animation-duration: 4s;
+}
 .about {
-  padding-top: 300px;
+  padding-top: 200px;
+  padding-bottom: 100px;
   text-align: center;
   margin-bottom: 360px;
   color: $color-greyDark;
   width: 100%;
-  background-color: #fff;
+  background-color: $color-greyLightest;
   border-bottom: 1px solid #efefef;
+  &-appear-active {
+    .tiles {
+      display: block;
+      animation: tiles 1s ease;
+    }
+    .tile {
+      &:nth-of-type(odd) {
+        animation: tile-up 1s ease-in-out;
+      }
+      &:nth-of-type(even) {
+        animation: tile-down 1s ease-in-out;
+      }
+    }
+    .letter {
+      animation: letter-in ease;
+    }
+    .name {
+      animation: fade-in 4s ease;
+    }
+    .school {
+      animation: fade-in 4.5s ease;
+    }
+    .biography {
+      animation: fade-in 5s ease;
+    }
+    animation-duration: 5s;
+  }
 }
-.bg {
-  position: absolute;
+.tiles {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: white;
+  display: none;
+  opacity: 0;
   z-index: -1;
+  .tile {
+    display: inline-block;
+    width: 12.5%;
+    height: 100vh;
+    background-color: $color-greyLightest;
+  }
+}
+.stripes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: none;
+  opacity: 0;
+  z-index: -1;
+  .stripe {
+    display: block;
+    width: 100%;
+    height: 12.5vh;
+    background-color: $color-greyLightest;
+  }
 }
 .grid {
   width: 50vw;
   height: calc(50vw * 3 / 4);
   margin: 0 auto;
-  background-image: url('../assets/images/profilePic.jpg');
+  background-image: url('https://i.imgur.com/Mdzlh9y.jpg');
   background-size: cover;
   background-position: 50% 50%;
 }
@@ -81,7 +317,7 @@ export default {
   width: 25%;
   height: 33.34%;
   font-size: 10vw;
-  border: 3px solid white;
+  border: 3px solid $color-greyLightest;
   align-items: center;
   justify-content: center;
   transition: color 2s ease;
@@ -97,10 +333,10 @@ export default {
   margin-bottom: 30px;
 }
 .biography {
-  font-family: garamond;
   width: 50%;
   padding: 30px;
   margin: 0 auto;
+  font-family: garamond;
   text-align: left;
   font-size: 1.2rem;
   line-height: 2;
@@ -112,7 +348,7 @@ export default {
 }
 @media (max-width: $screen-sm-min) {
   .about {
-    padding-top: 15px;
+    padding: 15px;
     width: 100%;
   }
   .grid {

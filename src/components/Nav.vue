@@ -57,6 +57,27 @@ export default {
     transform: translate(0, 0);
   }
 }
+@keyframes nav-out {
+  0% {
+    transform: translate(0, 0);
+  }
+  5% {
+    transform: translate(0, 0);
+  }
+  30% {
+    transform: translate(0, -50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, -50%);
+    opacity: 0;
+  }
+}
+.router-leave-active {
+  .nav {
+    animation: nav-out 2.5s ease-out;
+  }
+}
 .nav {
   position: absolute;
   opacity: 1;

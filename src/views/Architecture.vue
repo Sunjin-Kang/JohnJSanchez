@@ -180,6 +180,80 @@ export default {
     opacity: 1;
   }
 }
+@keyframes panel-l-out {
+  0% {
+    transform: translate(0, 0);
+  }
+  15% {
+    transform: translate(0, 0);
+  }
+  60% {
+    transform: translate(0, -100vh);
+  }
+  100% {
+    transform: translate(0, -100vh);
+  }
+}
+@keyframes panel-r-out {
+  0% {
+    transform: translate(0, 0);
+  }
+  15% {
+    transform: translate(0, 0);
+  }
+  60% {
+    transform: translate(0, 100vh);
+  }
+  100% {
+    transform: translate(0, 100vh);
+  }
+}
+@keyframes project-out {
+  0% {
+    transform: translate(0, 0);
+  }
+  40% {
+    transform: translate(0, 110%);
+  }
+  100% {
+    transform: translate(0, 110%);
+  }
+}
+@keyframes project-text-out {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.router-leave-active {
+  .panel {
+    opacity: 1 !important;
+    display: block !important;
+  }
+  .panel-l {
+    animation: 2.5s panel-l-out ease-in-out;
+  }
+  .panel-r {
+    animation: 2.5s panel-r-out ease-in-out;
+  }
+  .project {
+    img {
+      animation: project-out 2.5s ease;
+    }
+    &-info {
+      animation: project-text-out 2.5s ease;
+    }
+  }
+  animation: 2s;
+}
 .architecture {
   position: relative;
   overflow: hidden;
@@ -316,13 +390,14 @@ export default {
       bottom: 0;
       opacity: 0;
       transform: translate3d(-100%, -1px, 0);
-      transition: transform .6s cubic-bezier(1,0,0,1), opacity 0s cubic-bezier(.19,1,.22,1);
+      transition: transform 0s cubic-bezier(1,0,0,1), opacity 0s cubic-bezier(.19,1,.22,1);
     }
   }
   &:hover {
     .project-info::before {
       transform: translate3d(100%, -1px, 0);
       opacity: 1;
+      transition: transform .6s cubic-bezier(1,0,0,1), opacity 0s cubic-bezier(.19,1,.22,1);
     }
     img {
       filter: grayscale(0);
