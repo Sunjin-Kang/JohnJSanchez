@@ -17,7 +17,10 @@
             <div class='panel-r__bot'/>
           </div>
         </div>
-
+        <div class='shutter'>
+          <div class='shutter-l'/>
+          <div class='shutter-r'/>
+        </div>
         <div class='landing-content'>
           <div class='heading'>
             <h2 class='title'>{{ title }}</h2>
@@ -74,18 +77,18 @@ export default {
       bg: 'https://i.imgur.com/cDg2Mex.jpg'
     }
   },
-  created () {
-    this.loading = true
-    axios.get('https://i.imgur.com/cDg2Mex.jpg')
-      .then(res => {
-        this.loading = false
-      })
-  },
   methods: {
     translateY: function (val) {
       let y = Math.random() * val + (val / 5)
       return {'transform': `matrix(1, 0, 0, 1, 0, ${y})`}
     }
+  },
+  beforeCreate () {
+    this.loading = true
+    axios.get('https://i.imgur.com/cDg2Mex.jpg')
+      .then(res => {
+        this.loading = false
+      })
   }
 }
 </script>
@@ -222,6 +225,37 @@ export default {
     filter: brightness(120%);
   }
 }
+@keyframes shutter-l {
+  0% {
+  }
+  50% {
+    transform: translate(50vw, 0);
+  }
+  100% {
+    transform: translate(50vw, 0);
+  }
+}
+@keyframes shutter-r {
+  0% {
+  }
+  50% {
+    transform: translate(-50vw, 0);
+  }
+  100% {
+    transform: translate(-50vw, 0);
+  }
+}
+.router-leave-active {
+  .shutter {
+    &-l {
+      animation: shutter-l 3s ease-in-out;
+    }
+    &-r {
+      animation: shutter-r 3s ease-in-out;
+    }
+  }
+  animation: 2s;
+}
 .landing {
   position: relative;
   color: white;
@@ -239,6 +273,7 @@ export default {
       min-width: 100%;
       min-height: 100%;
       width: 100%;
+      height: 100%;
       top: 0;
       left: 0;
     }
@@ -283,7 +318,7 @@ export default {
   }
 }
 .panel {
-  position: absolute;
+  position: fixed;
   z-index: -1;
   top: 0;
   left: 0;
@@ -325,6 +360,26 @@ export default {
     }
   }
 }
+.shutter {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  &-l, &-r {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background-color: white;
+  }
+  &-l {
+    right: 100vw;
+  }
+  &-r {
+    left: 100vw;
+  }
+}
 /* Intro Info */
 .heading {
   position: absolute;
@@ -351,6 +406,7 @@ export default {
   color: white;
   font-weight: 100;
   letter-spacing: .2em;
+  white-space: nowrap;
 }
 
 .btn {

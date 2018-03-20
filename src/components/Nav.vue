@@ -2,7 +2,7 @@
   <transition appear appear-active-class='nav-appear-active'>
     <nav class='nav'>
       <div class='nav-wrapper'>
-        <router-link class='nav-name' to='/' exact>
+        <router-link :class='darkTheme ? "nav-name dark" : "nav-name"' to='/' exact>
           {{ name }}
         </router-link>
         <button :class='btnActive ? "btn active" : "btn"' @click='btnHandler'><span class='btn-1'><span class='btn-1-1'/></span></button>
@@ -15,7 +15,7 @@
               :key='i'
               :to='link'
               exact>
-              <a>{{ link }}</a>
+              <a :class='darkTheme ? "dark" : ""'>{{ link }}</a>
             </router-link>
           </ul>
         </div>
@@ -31,7 +31,8 @@ export default {
     return {
       name: 'John Sanchez',
       links: ['Architecture', 'Concept', 'About', 'Contact'],
-      btnActive: false
+      btnActive: false,
+      darkTheme: this.$route.path === '/Concept'
     }
   },
   methods: {
@@ -108,9 +109,55 @@ export default {
     line-height: 36px;
     z-index: 1000;
     left: 60px;
+    &.dark {
+      color: $color-greyLightest;
+    }
   }
   &-appear-active {
     animation: nav-in 3s ease-out;
+  }
+}
+.nav-link {
+  display: inline-block;
+  height: 36px;
+  font-size: .72rem;
+  letter-spacing: .18rem;
+  font-weight: lighter;
+  text-transform: uppercase;
+  padding: 0;
+  &:not(:last-child) {
+    margin-right: 50px;
+  }
+  > a {
+    position: relative;
+    border-bottom: 1px solid transparent;
+    line-height: 1.2rem;
+    padding-bottom: 4px;
+    color: $color-greyDark;
+    &.dark {
+      color: $color-greyLightest;
+      &::after {
+        background-color: $color-grey;
+      }
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background-color: $color-greyLighter;
+      transform-origin: bottom right;
+      transition: transform 0.4s ease-out;
+    }
+    &:hover {
+      &::after{
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+    }
   }
 }
 .btn {
@@ -175,43 +222,6 @@ export default {
     }
   }
 }
-.nav-link {
-  display: inline-block;
-  height: 36px;
-  font-size: .72rem;
-  letter-spacing: .18rem;
-  font-weight: lighter;
-  text-transform: uppercase;
-  padding: 0;
-  &:not(:last-child) {
-    margin-right: 50px;
-  }
-  > a {
-    position: relative;
-    border-bottom: 1px solid transparent;
-    line-height: 1.2rem;
-    padding-bottom: 4px;
-    color: $color-greyDark;
-    &::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      transform: scaleX(0);
-      height: 1px;
-      bottom: 0;
-      left: 0;
-      background-color: #d8d7d6;
-      transform-origin: bottom right;
-      transition: transform 0.4s ease-out;
-    }
-    &:hover {
-      &::after{
-        transform: scaleX(1);
-        transform-origin: bottom left;
-      }
-    }
-  }
-}
 @media (max-width: $screen-lg-min) {
   .nav {
     &-name {
@@ -257,6 +267,7 @@ export default {
     &-name {
       left: 0;
       padding: 15px;
+      color: $color-greyDark !important;
     }
     &-wrapper {
       padding: 0;
@@ -290,6 +301,9 @@ export default {
     margin-left: 0;
     margin-right: 0;
     line-height: 1.4;
+    > a {
+      color: $color-greyDark !important;
+    }
     &:not(:last-child) {
       margin-bottom: 15px;
     }

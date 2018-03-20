@@ -47,7 +47,7 @@ export default {
     return {
       name: 'John Sanchez',
       gridName: 'JOHNJSANCHEZ',
-      gridOrder: [3,7,2,6,12,10,8,1,9,4,5,11],
+      gridOrder: [3, 7, 2, 6, 12, 10, 8, 1, 9, 4, 5, 11],
       school: 'Columbia GSAPP',
       profilePic: require('@/assets/images/profilePic.jpg'),
       loading: false
@@ -56,7 +56,9 @@ export default {
   beforeCreate () {
     this.loading = true
     axios.get('https://i.imgur.com/Mdzlh9y.jpg')
-      .then(() => this.loading = false)
+      .then(() => {
+        this.loading = false
+      })
   }
 }
 </script>

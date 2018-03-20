@@ -1,6 +1,6 @@
 <template>
   <Loading v-if='loading' />
-  <div v-else>
+  <div v-else id='architecture'>
     <Nav />
     <transition appear appear-active-class='architecture-appear-active'>
       <section class='architecture'>
@@ -41,7 +41,7 @@
 <script>
 import Loading from '@/components/Loading'
 import Nav from '@/components/Nav'
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
   name: 'Architecture',
@@ -108,35 +108,25 @@ export default {
       ]
     }
   },
-  mounted () {
-    window.addEventListener('load', () => {
-      this.loading = false
-    })
-  },
-  // created () {
-  //   this.loading = true
-  //   Promise.all(this.projects[0].items.map(project => {
-  //     axios.get(project.photo)
-  //       .then(res => res.data)
-  //       .catch(e => console.error(e))
-  //   }))
-  //     .then(() => {
-  //       Promise.all(this.projects[1].items.map(project => {
-  //         axios.get(project.photo)
-  //           .then(res => {
-  //             return res.data
-  //             // this.loading = false
-  //           })
-  //           .catch(e => console.error(e))
-  //       }))
-  //     })
-  //     .then(() => {
-  //       setTimeout(() => {
-  //         this.loading = false
-  //       }, 1000)
-  //     })
-  //     .catch(err => console.error(err))
-  // },
+  beforeCreate () {
+    this.loading = true
+    Promise.all(this.projects[0].items.map(project => {
+      return axios.get(project.photo)
+        .then(res => res.data)
+        .catch(e => console.error(e))
+    }))
+      .then(() => {
+        Promise.all(this.projects[1].items.map(project => {
+          return axios.get(project.photo)
+            .then(res => res.data)
+            .catch(e => console.error(e))
+        }))
+      })
+      .then(() => {
+        this.loading = false
+      })
+      .catch(err => console.error(err))
+  }
 }
 </script>
 

@@ -2,21 +2,22 @@
   <Loading v-if='loading' />
   <div v-else >
     <Nav />
-    <div class='concept'>
-      <div class='bg' />
-
-      <div class='concepts'>
-        <div class='concepts-grid'>
-          <div
-            v-for='(concept, i) in concepts'
-            :key='i'
-            class='design'
-            >
-            <img :src='concept.photo' />
+    <transition appear appear-active-class='concept-appear-active'>
+      <div class='concept'>
+        <div class='veil'/>
+        <div class='concepts'>
+          <div class='concepts-grid'>
+            <div
+              v-for='(concept, i) in concepts'
+              :key='i'
+              class='design'
+              >
+              <img :src='concept.photo' />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -31,6 +32,18 @@ export default {
       loading: false,
       concepts: [
         {
+          name: 'Sound',
+          photo: 'https://i.imgur.com/dkvh5mx.jpg'
+        },
+        {
+          name: 'Sound',
+          photo: 'https://i.imgur.com/OSkdRMG.jpg'
+        },
+        {
+          name: 'Sound',
+          photo: 'https://i.imgur.com/9vYBvfQ.jpg'
+        },
+        {
           name: 'Taipei Performance Arts Center',
           photo: 'https://i.imgur.com/XFmwSa8.jpg'
 
@@ -41,42 +54,101 @@ export default {
         },
         {
           name: 'Taipei Performance Arts Center',
-          photo: 'https://i.imgur.com/GRCT7uF.jpg'
-        },
-        {
-          name: 'Taipei Performance Arts Center',
           photo: 'https://i.imgur.com/43HK6WU.jpg'
         },
         {
-          name: 'proj5',
-          photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/58a491ec20099eb288b95357/1487180403090/?format=2500w'
+          name: 'Taipei Performance Arts Center',
+          photo: 'https://i.imgur.com/GRCT7uF.jpg'
         },
         {
-          name: 'proj6',
-          photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/57c7655cebbd1a73645ce32a/57c7655d893fc0eab4b3179b/1472685408507/Fallbrook+House+-+Interior+View+%23001.jpg?format=2500w'
+          name: 'Stuttgart',
+          photo: 'https://i.imgur.com/SBccLZq.jpg'
         },
         {
-          name: 'proj7',
-          photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/592fc9d19f745641ebf104f7/592fdf0415cf7daeb2973c92/1496309580041/TowersWithin_kvu_StudioLott_%23008BW.jpg?format=1000w'
+          name: 'Stuttgart',
+          photo: 'https://i.imgur.com/9W9h6bL.jpg'
         },
         {
-          name: 'proj8',
-          photo: 'https://static1.squarespace.com/static/57615d253c44d8a0f9a8ae5b/t/579440c3b8a79baa23c67651/1469333713226/?format=2500w'
+          name: 'Stuttgart',
+          photo: 'https://i.imgur.com/odevEsi.jpg'
+        },
+        {
+          name: 'Stuttgart',
+          photo: 'https://i.imgur.com/qNRcIUJ.jpg'
         }
       ]
     }
-  },
-  mounted () {
-    this.loading = true
-    setTimeout(() => {
-      this.loading = false
-    }, 1250)
   }
 }
 </script>
 
 <style lang='scss' scoped>
 @import '../scss/abstracts/variables';
+@keyframes veil {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes veil-out {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes design-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes design-out {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.router-leave-active {
+  .nav {
+    animation-duration: 3.5s !important;
+  }
+  .design {
+    &:nth-of-type(odd) {
+      animation: design-out 3.3s ease-out;
+    }
+    &:nth-of-type(even) {
+      animation: design-out 6.3s ease-in;
+    }
+  }
+  .veil {
+    display: block;
+    animation: veil-out 5s ease;
+  }
+  animation: 3s;
+}
+.nav {
+  // animation-duration: 3s !important;
+}
 .concept {
   position: relative;
   overflow: hidden;
@@ -84,17 +156,33 @@ export default {
   margin-bottom: 360px;
   color: $color-greyDark;
   padding-bottom: 30px;
-  background-color: white;
+  background-color: black;
   border-bottom: 1px solid #efefef;
+  &-appear-active {
+    .design {
+      &:nth-of-type(odd) {
+        animation: design-in 2s ease;
+      }
+      &:nth-of-type(even) {
+        animation: design-in 3s ease;
+      }
+    }
+    .veil {
+      display: block;
+      animation: veil 1s ease-in-out;
+    }
+    animation: 4s;
+  }
 }
-.bg {
-  position: absolute;
+.veil {
+  position: fixed;
   width: 100%;
   height: 100%;
-  // background-color: $color-greyLightest;
+  background-color: white;
+  display: none;
+  opacity: 0;
   top: 0;
   left: 0;
-  z-index: -1;
 }
 .concepts {
   margin: 0 auto;
@@ -111,19 +199,22 @@ export default {
   padding: 15px;
   > img {
     width: 100%;
-    filter: grayscale(100%) contrast(105%);
+    filter: grayscale(100%) contrast(105%) invert(100%);
     transition: filter .3s ease;
     &:hover {
       filter: grayscale(0);
     }
   }
-  &:nth-of-type(odd) {
-    float: left;
-    clear: left;
+  &:first-child {
+    margin-top: 72px;
   }
-  &:nth-of-type(even) {
+  &:nth-of-type(odd) {
     float: right;
     clear: right;
+  }
+  &:nth-of-type(even) {
+    float: left;
+    clear: left;
   }
 }
 @media (max-width: $screen-lg-min) {
@@ -141,7 +232,7 @@ export default {
 }
 @media (max-width: $screen-sm-min) {
   .concept {
-    padding-top: 15px;
+    padding-top: 0;
   }
   .concepts {
     width: 100%;
@@ -155,6 +246,9 @@ export default {
       padding-left: 0;
       padding-right: 0;
       float: none;
+      &:first-child {
+        margin-top: 0;
+      }
     }
   }
 }
