@@ -8,15 +8,17 @@
         <button :class='btnActive ? "btn active" : "btn"' @click='btnHandler'><span class='btn-1'><span class='btn-1-1'/></span></button>
         <div :class='!btnActive ? "nav-menu active" : "nav-menu"'>
           <ul class='nav-main'>
-            <router-link
+            <li
               class='nav-link'
-              tag='li'
               v-for='(link, i) in links'
               :key='i'
-              :to='link'
-              exact>
-              <a :class='darkTheme ? "dark" : ""'>{{ link }}</a>
-            </router-link>
+              >
+              <router-link
+                :to='`/${link}`'
+                :class='darkTheme ? "dark" : ""'
+                exact>{{ link }}
+              </router-link>
+            </li>
           </ul>
         </div>
       </div>

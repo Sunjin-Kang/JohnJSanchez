@@ -1,5 +1,5 @@
 <template>
-  <Loading v-if='loading' />
+  <Loading v-if='loading'/>
   <div v-else id='architecture'>
     <Nav />
     <transition appear appear-active-class='architecture-appear-active'>
@@ -19,7 +19,7 @@
                 v-for='(project, i) in projectCol.items'
                 :key='i'
                 class='project'>
-                <router-link :to='{name: "Project", params: { project: project.link }}' class='project-link'>
+                <router-link :to='`/Architecture/${project.link}`' class='project-link' exact>
                   <div class='project-image'>
                     <img :src='project.photo'/>
                   </div>
