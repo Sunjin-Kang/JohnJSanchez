@@ -232,7 +232,7 @@ export default {
 }
 @media (max-width: $screen-sm-min) {
   .concept {
-    padding-top: 0;
+    padding-top: 76px;
   }
   .concepts {
     width: 100%;

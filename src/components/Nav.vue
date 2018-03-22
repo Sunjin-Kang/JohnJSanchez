@@ -21,23 +21,25 @@
             </li>
           </ul>
           <div class='nav-contact'>
-            <router-link :class='darkTheme ? "nav-contact dark" : "nav-contact"' :to='{ name: "Contact" }' exact>
-              <div class='btn-txt'>
-                <span class='btn-contact__default'>
+            <router-link :class='darkTheme ? "contact-link dark" : "contact-link"' :to='{ name: "Contact" }' exact>
+              <div class='contact-link-txt'>
+                <span class='contact-link-txt__default'>
                   <span
                     v-for='(letter, i) in contact'
-                    :key='i'>
+                    :key='i'
+                    :class='`letter-${i+1}`'>
                     {{ letter }}
                   </span>
                 </span>
 
-                <!-- <span class='btn-contact__hover'>
+                <span class='contact-link-txt__hover'>
                   <span
                     v-for='(letter, i) in contact'
-                    :key='i'>
+                    :key='i'
+                    :class='`letter-${i+1}`'>
                     {{ letter }}
                   </span>
-                </span> -->
+                </span>
               </div>
             </router-link>
           </div>
@@ -53,7 +55,7 @@ export default {
   data () {
     return {
       name: 'John Sanchez',
-      links: ['Architecture', 'Concept', 'About'],
+      links: ['About', 'Architecture', 'Concept'],
       contact: 'Contact',
       btnActive: false,
       darkTheme: this.$route.path === '/Concept'
@@ -132,20 +134,127 @@ export default {
     position: absolute;
     font-size: 1.25rem;
     line-height: 36px;
-    z-index: 100000;
     left: 60px;
     &.dark {
       color: $color-greyLightest;
     }
   }
   &-contact {
+    color: $color-greyDark;
     float: right;
     > a {
-      z-index: 100;
+    }
+    &.dark {
+      color: $color-greyLightest;
     }
   }
   &-appear-active {
     animation: nav-in 3s ease-out;
+  }
+}
+.contact-link {
+  display: inline-block;
+  position: relative;
+  color: $color-greyDarker;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: lighter;
+  font-size: .72rem;
+  letter-spacing: .24em;
+  padding: .75em 1em;
+  border: 1px solid $color-greyLighter;
+  overflow: hidden;
+  z-index: 1;
+  transition: transform .4s cubic-bezier(.7, 0, .3, 1), border .4s ease-out;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: $color-greyDarker;
+    transform: translateY(100%);
+    transition: transform .4s cubic-bezier(.7, 0, .3, 1);
+  }
+  &:hover {
+    border: 1px solid $color-greyDarker;
+    &::before {
+      transform: translateY(0);
+    }
+    .contact-link-txt {
+      &__hover {
+        transform: translateY(0);
+        > * {
+          transform: translateY(0) !important;
+        }
+      }
+    }
+  }
+  &:not(:hover) {
+    .contact-link-txt {
+      &__default > * {
+        transform: translateY(0) !important;
+      }
+    }
+  }
+  &-txt {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    > span {
+      display: inline-block;
+      transition: transform .4s cubic-bezier(.7, 0, .3, 1);
+      > * {
+        position: relative;
+        display: inline-block;
+        transition: transform .6s cubic-bezier(.7, 0, .3, 1);
+      }
+    }
+    &__default {
+      position: relative;
+      @for $i from 1 through 7 {
+        $num: random(100) * -1 - 20;
+        .letter-#{$i} {
+          transform: matrix(1, 0, 0, 1, 0, $num);
+        }
+      }
+    }
+    &__hover {
+      position: absolute;
+      color: $color-greyLightest;
+      top: 0;
+      left: 0;
+      right: 0;
+      transform: translateY(calc(2.5em + 4px));
+      @for $i from 1 through 7 {
+        $num: random(50) + 5;
+        .letter-#{$i} {
+          transform: matrix(1, 0, 0, 1, 0, $num);
+        }
+      }
+    }
+  }
+  &.dark {
+    color: $color-greyLightest;
+    border: 1px solid $color-grey;
+    &:hover {
+      border: 1px solid $color-greyLightest;
+    }
+    &::before {
+      background-color: $color-greyLightest;
+    }
+    .contact-link-txt__hover {
+      color: $color-greyDarker;
+    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    border-style: inset;
   }
 }
 .nav-link {
@@ -273,6 +382,9 @@ export default {
     &-name {
       left: 30px;
     }
+    &-contact {
+      display: block;
+    }
     &-wrapper {
       padding: 0 30px;
     }
@@ -293,7 +405,7 @@ export default {
     display: block;
   }
   .nav {
-    position: relative;
+    position: fixed;
     padding: 0;
     background-color: #fff;
     height: 60px;
@@ -343,6 +455,14 @@ export default {
     }
     &:not(:last-child) {
       margin-bottom: 15px;
+    }
+  }
+  .contact-link {
+    width: calc(100% - 15px);
+    background-color: $color-greyDarker;
+    border-color: $color-greyDarker !important;
+    &:hover {
+      border-color: $color-greyLightest !important;
     }
   }
 }

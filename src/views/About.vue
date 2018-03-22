@@ -351,6 +351,7 @@ export default {
 @media (max-width: $screen-sm-min) {
   .about {
     padding: 15px;
+    padding-top: 76px;
     width: 100%;
   }
   .grid {

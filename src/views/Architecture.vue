@@ -419,7 +419,7 @@ export default {
 }
 @media (max-width: $screen-sm-min) {
   .architecture {
-    padding-top: 15px;
+    padding-top: 76px;
   }
   .projects {
     width: 100%;

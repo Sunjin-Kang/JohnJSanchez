@@ -35,8 +35,7 @@
                   <span
                     v-for='(letter, i) in buttonText'
                     :key='i'
-                    :class='{ "space": letter == " " }'
-                    :style="translateY(-100)">
+                    :class='letter == " " ? `letter-${i+1} space` : `letter-${i+1}`'>
                     {{ letter }}
                   </span>
                 </span>
@@ -44,8 +43,7 @@
                   <span
                     v-for='(letter, i) in buttonText'
                     :key='i'
-                    :class='{ "space": letter == " " }'
-                    :style="translateY(30)">
+                    :class='letter == " " ? `letter-${i+1} space` : `letter-${i+1}`'>
                     {{ letter }}</span>
                 </span>
               </div>
@@ -75,12 +73,6 @@ export default {
       buttonText: 'Selected Works',
       buttonSubtext: '2011 - 2018',
       bg: 'https://i.imgur.com/cDg2Mex.jpg'
-    }
-  },
-  methods: {
-    translateY: function (val) {
-      let y = Math.random() * val + (val / 5)
-      return {'transform': `matrix(1, 0, 0, 1, 0, ${y})`}
     }
   },
   beforeCreate () {
@@ -470,6 +462,12 @@ export default {
     }
     &__default {
       position: relative;
+      @for $i from 1 through 14 {
+        $num: random(100) * -1 - 20;
+        .letter-#{$i} {
+          transform: matrix(1, 0, 0, 1, 0, $num);
+        }
+      }
     }
     &__hover {
       position: absolute;
@@ -477,6 +475,12 @@ export default {
       top: 0;
       left: 0;
       transform: translateY(calc(2.5em + 4px));
+      @for $i from 1 through 14 {
+        $num: random(50) * + 5;
+        .letter-#{$i} {
+          transform: matrix(1, 0, 0, 1, 0, $num);
+        }
+      }
     }
   }
   &:focus {

@@ -129,4 +129,12 @@ export default {
 
   }
 }
+@media (max-width: $screen-lg-min) {
+}
+@media (max-width: $screen-md-min) {
+}
+@media (max-width: $screen-sm-min) {
+  .contact {
+  }
+}
 </style>
