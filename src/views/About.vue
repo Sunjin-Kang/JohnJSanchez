@@ -137,7 +137,7 @@ export default {
     background-color: $color-greyLightest;
     color: $color-greyLightest;
   }
-  50% {
+  60% {
     background-color: $color-greyLightest;
     color: $color-greyLightest;
   }
@@ -153,7 +153,7 @@ export default {
   5% {
     color: white;
   }
-  25% {
+  15% {
     background-color: $color-greyLightest;
     color: $color-greyLightest;
   }
@@ -165,10 +165,10 @@ export default {
 @keyframes letter-out-2 {
   0% {
   }
-  18% {
+  12% {
     color: white;
   }
-  36% {
+  21% {
     background-color: $color-greyLightest;
     color: $color-greyLightest;
   }
@@ -180,10 +180,10 @@ export default {
 @keyframes letter-out-3 {
   0% {
   }
-  15% {
+  21% {
     color: white;
   }
-  45% {
+  33% {
     background-color: $color-greyLightest;
     color: $color-greyLightest;
   }
@@ -192,47 +192,47 @@ export default {
     background-color: $color-greyLightest;
   }
 }
-@for $i from 1 through 12 {
-  .letter-#{$i} {
-    animation-duration: $i * .25 + 2 + s !important;
-  }
-}
 .router-leave-active {
   .nav {
-    animation-duration: 5s !important;
+    animation-duration: 4s !important;
   }
   .name, .school, .biography {
     animation: fade-out 2s ease;
   }
   .letter {
-    &-1, &-4, &-7, &-10 {
-      animation: letter-out-1 2s ease;
+    &-1, &-2, &-3, &-4 {
+      animation: letter-out-1 2s ease-in;
     }
-    &-2, &-5, &-8, &-11 {
-      animation: letter-out-2 2s ease;
+    &-5, &-6, &-7, &-8 {
+      animation: letter-out-2 2s ease-in;
     }
-    &-3, &-6, &-9, &-12 {
-      animation: letter-out-2 2s ease;
+    &-9, &-10, &-11, &-12 {
+      animation: letter-out-2 2s ease-in;
     }
   }
   .stripes {
     display: block !important;
     opacity: 1 !important;
-    animation: stripes 3s ease;
-    animation-delay: 1.5s;
+    animation: stripes 2s ease;
+    animation-delay: 1.3s;
   }
   .stripe {
     background-color: white !important;
     &:nth-of-type(odd) {
       animation: stripe-right 1.5s ease-in-out;
-      animation-delay: 1.5s;
+      animation-delay: 1.3s;
     }
     &:nth-of-type(even) {
       animation: stripe-left 1.5s ease-in-out;
-      animation-delay: 1.5s;
+      animation-delay: 1.3s;
     }
   }
-  animation-duration: 4s;
+  @for $i from 1 through 8 {
+    .stripe-#{$i} {
+      animation-duration: random(70) / 100 + .6 + s !important;
+    }
+  }
+  animation-duration: 3s;
 }
 .about {
   padding-top: 200px;
@@ -246,18 +246,28 @@ export default {
   &-appear-active {
     .tiles {
       display: block;
-      animation: tiles 1s ease;
+      animation: tiles 1.5s ease;
     }
     .tile {
       &:nth-of-type(odd) {
-        animation: tile-up 1s ease-in-out;
+        animation: tile-up 1.5s ease-in-out;
       }
       &:nth-of-type(even) {
-        animation: tile-down 1s ease-in-out;
+        animation: tile-down 1.5s ease-in-out;
+      }
+    }
+    @for $i from 1 through 8 {
+      .tile-#{$i} {
+        animation-duration: random(70) / 100 + .6 + s !important;
       }
     }
     .letter {
       animation: letter-in ease;
+    }
+    @for $i from 1 through 12 {
+      .letter-#{$i} {
+        animation-duration: $i * .25 + 2 + s !important;
+      }
     }
     .name {
       animation: fade-in 4s ease;
@@ -324,7 +334,7 @@ export default {
   justify-content: center;
   transition: color 2s ease;
   &:hover {
-    transition: color .4s ease-out;
+    transition: color .1s ease-out;
     color: white;
   }
 }
