@@ -1,5 +1,5 @@
 <template>
-  <Loading v-if='loading'/>
+  <Loading v-if='loading' />
   <div v-else>
     <Nav />
     <transition appear appear-ative-class='project-appear-active'>
@@ -8,19 +8,20 @@
       </section>
     </transition>
   </div>
-
 </template>
 
 <script>
 import Loading from '@/components/Loading'
 import Nav from '@/components/Nav'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name: 'Project',
   components: { Loading, Nav },
   data () {
-
+    return {
+      loading: false
+    }
   }
 }
 </script>

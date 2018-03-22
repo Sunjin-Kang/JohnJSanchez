@@ -165,10 +165,10 @@ export default {
 @keyframes letter-out-2 {
   0% {
   }
-  20% {
+  18% {
     color: white;
   }
-  40% {
+  36% {
     background-color: $color-greyLightest;
     color: $color-greyLightest;
   }
@@ -180,10 +180,10 @@ export default {
 @keyframes letter-out-3 {
   0% {
   }
-  10% {
+  15% {
     color: white;
   }
-  50% {
+  45% {
     background-color: $color-greyLightest;
     color: $color-greyLightest;
   }

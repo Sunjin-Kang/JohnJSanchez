@@ -19,7 +19,7 @@
                 v-for='(project, i) in projectCol.items'
                 :key='i'
                 class='project'>
-                <router-link :to='`/Architecture/${project.link}`' class='project-link' exact>
+                <router-link :to='{name: "Project", params: {project : project.link}}' class='project-link' exact>
                   <div class='project-image'>
                     <img :src='project.photo'/>
                   </div>
@@ -174,7 +174,7 @@ export default {
   0% {
     transform: translate(0, 0);
   }
-  15% {
+  20% {
     transform: translate(0, 0);
   }
   60% {
@@ -188,7 +188,7 @@ export default {
   0% {
     transform: translate(0, 0);
   }
-  15% {
+  20% {
     transform: translate(0, 0);
   }
   60% {

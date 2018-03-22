@@ -2,7 +2,7 @@
   <transition appear appear-active-class='nav-appear-active'>
     <nav class='nav'>
       <div class='nav-wrapper'>
-        <router-link :class='darkTheme ? "nav-name dark" : "nav-name"' to='/' exact>
+        <router-link :class='darkTheme ? "nav-name dark" : "nav-name"' :to='{ name: "Landing" }' exact>
           {{ name }}
         </router-link>
         <button :class='btnActive ? "btn active" : "btn"' @click='btnHandler'><span class='btn-1'><span class='btn-1-1'/></span></button>
@@ -14,12 +14,17 @@
               :key='i'
               >
               <router-link
-                :to='`/${link}`'
+                :to='{ name: link }'
                 :class='darkTheme ? "dark" : ""'
                 exact>{{ link }}
               </router-link>
             </li>
           </ul>
+          <div class='nav-contact'>
+            <router-link :class='darkTheme ? "nav-contact dark" : "nav-contact"' :to='{ name: "Contact" }' exact>
+              {{ contact }}
+            </router-link>
+          </div>
         </div>
       </div>
     </nav>
@@ -32,7 +37,8 @@ export default {
   data () {
     return {
       name: 'John Sanchez',
-      links: ['Architecture', 'Concept', 'About', 'Contact'],
+      links: ['Architecture', 'Concept', 'About'],
+      contact: 'Contact',
       btnActive: false,
       darkTheme: this.$route.path === '/Concept'
     }
@@ -82,7 +88,7 @@ export default {
   }
 }
 .nav {
-  position: absolute;
+  position: fixed;
   opacity: 1;
   top: 0;
   left: 0;
@@ -113,6 +119,12 @@ export default {
     left: 60px;
     &.dark {
       color: $color-greyLightest;
+    }
+  }
+  &-contact {
+    float: right;
+    > a {
+      z-index: 100;
     }
   }
   &-appear-active {
@@ -249,7 +261,9 @@ export default {
     }
     &-main {
       position: relative;
-      margin-left: 180px;
+      display: inline-block;
+      // float: left;
+      margin-left: 160px;
       text-align: left;
       width: auto;
       left: auto;
@@ -270,6 +284,10 @@ export default {
       left: 0;
       padding: 15px;
       color: $color-greyDark !important;
+    }
+    &-contact {
+      float: none;
+      margin-left: 15px;
     }
     &-wrapper {
       padding: 0;

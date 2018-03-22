@@ -171,7 +171,7 @@ export default {
       display: block;
       animation: veil 1s ease-in-out;
     }
-    animation: 4s;
+    animation: 3.5s;
   }
 }
 .veil {

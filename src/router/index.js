@@ -24,11 +24,6 @@ const router = new VueRouter({
       component: Architecture
     },
     {
-      path: '/Architecture/:project',
-      name: 'Project',
-      component: Project
-    },
-    {
       path: '/Concept',
       name: 'Concept',
       component: Concept
@@ -42,6 +37,11 @@ const router = new VueRouter({
       path: '/Contact',
       name: 'Contact',
       component: Contact
+    },
+    {
+      path: '/Architecture/:project',
+      name: 'Project',
+      component: Project
     }
   ]
 })

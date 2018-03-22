@@ -3,7 +3,7 @@
     <transition name='router' mode='out-in'>
       <router-view />
     </transition>
-    <Footer v-show='$route.path !=="/"' />
+    <Footer v-if='$route.path !== ("/" && "/Contact")' />
   </div>
 </template>
 
