@@ -22,7 +22,23 @@
           </ul>
           <div class='nav-contact'>
             <router-link :class='darkTheme ? "nav-contact dark" : "nav-contact"' :to='{ name: "Contact" }' exact>
-              {{ contact }}
+              <div class='btn-txt'>
+                <span class='btn-contact__default'>
+                  <span
+                    v-for='(letter, i) in contact'
+                    :key='i'>
+                    {{ letter }}
+                  </span>
+                </span>
+
+                <!-- <span class='btn-contact__hover'>
+                  <span
+                    v-for='(letter, i) in contact'
+                    :key='i'>
+                    {{ letter }}
+                  </span>
+                </span> -->
+              </div>
             </router-link>
           </div>
         </div>
@@ -110,12 +126,13 @@ export default {
     text-align: center;
     height: 36px;
     line-height: 36px;
+    z-index: -1;
   }
   &-name {
     position: absolute;
     font-size: 1.25rem;
     line-height: 36px;
-    z-index: 1000;
+    z-index: 100000;
     left: 60px;
     &.dark {
       color: $color-greyLightest;
