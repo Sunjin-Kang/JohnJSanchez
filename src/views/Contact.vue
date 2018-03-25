@@ -147,8 +147,7 @@ export default {
       this.showForm = !this.showForm
     },
     handleSubmit (e) {
-      console.log('I"M HERE AT HANDLE SUBMIT')
-      const { firstName, lastName, subject, email, message } = this
+      const { firstName, lastName, email, message } = this
       const letter = {
         subject: this.subject.length > 0 ? this.subject : 'No Subject',
         html: `<b>Name:</b> ${firstName} ${lastName} <br/>
