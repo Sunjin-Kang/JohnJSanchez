@@ -71,7 +71,7 @@ export default {
       subtitle: 'Columbia GSAPP',
       name: 'John J Sanchez',
       buttonText: 'Selected Works',
-      buttonSubtext: '2011 - 2018',
+      buttonSubtext: '2011 ~ 2018',
       bg: 'https://i.imgur.com/cDg2Mex.jpg'
     }
   },
@@ -396,8 +396,9 @@ export default {
 }
 .name {
   color: white;
+  font-variant: small-caps;
   font-weight: 100;
-  letter-spacing: .2em;
+  letter-spacing: .2rem;
   white-space: nowrap;
 }
 

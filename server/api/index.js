@@ -1,8 +1,8 @@
 const router = require('express').Router()
 module.exports = router
 
-router.use('/architecture', require('./architecture'))
-router.use('/concept', require('./concept'))
+// router.use('/architecture', require('./architecture'))
+// router.use('/concept', require('./concept'))
 router.use('/contact', require('./contact'))
 
 router.use((req, res, next) => {

@@ -3,7 +3,7 @@
     <transition name='router' mode='out-in'>
       <router-view />
     </transition>
-    <Footer v-if='$route.path !== ("/" || "/Contact")' />
+    <Footer v-if='$route.path !== "/" && $route.path !== "/Contact"' />
   </div>
 </template>
 
@@ -37,6 +37,9 @@ ol, ul {
 a {
   text-decoration: none;
   color: inherit;
+}
+button, input, textarea {
+    outline: 0;
 }
 .app {
   font-family: 'Avenir', sans-serif, Georgia;

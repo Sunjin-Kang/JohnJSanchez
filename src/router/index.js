@@ -41,7 +41,8 @@ const router = new VueRouter({
     {
       path: '/Architecture/:project',
       name: 'Project',
-      component: Project
+      component: Project,
+      props: true
     }
   ]
 })

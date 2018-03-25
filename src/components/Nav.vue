@@ -128,13 +128,15 @@ export default {
     text-align: center;
     height: 36px;
     line-height: 36px;
-    z-index: -1;
   }
   &-name {
     position: absolute;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
+    letter-spacing: .15rem;
     line-height: 36px;
     left: 60px;
+    font-variant: small-caps;
+    z-index: 11;
     &.dark {
       color: $color-greyLightest;
     }
@@ -261,9 +263,10 @@ export default {
   display: inline-block;
   height: 36px;
   font-size: .72rem;
-  letter-spacing: .18rem;
+  letter-spacing: .24rem;
   font-weight: lighter;
   text-transform: uppercase;
+  // font-variant: small-caps;
   padding: 0;
   &:not(:last-child) {
     margin-right: 50px;
@@ -392,7 +395,7 @@ export default {
       position: relative;
       display: inline-block;
       // float: left;
-      margin-left: 160px;
+      margin-left: 180px;
       text-align: left;
       width: auto;
       left: auto;
@@ -463,6 +466,15 @@ export default {
     border-color: $color-greyDarker !important;
     &:hover {
       border-color: $color-greyLightest !important;
+    }
+    &::before {
+      background-color: $color-greyLightest;
+    }
+    .contact-link-txt__default {
+      color: $color-greyLightest;
+    }
+    .contact-link-txt__hover {
+      color: $color-greyDarker;
     }
   }
 }

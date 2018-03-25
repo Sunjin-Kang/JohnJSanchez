@@ -329,7 +329,6 @@ export default {
     }
   }
 }
-
 .project {
   margin-bottom: 60px;
   padding-left: 45px;
