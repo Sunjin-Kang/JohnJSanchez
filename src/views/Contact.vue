@@ -15,17 +15,19 @@
               <h2 class='form-heading'>Send me a Message</h2>
 
               <form class='form' @submit.prevent='handleSubmit'>
-                <div class='first-name'>
-                  <input v-model='firstName' @change='firstNameErr = false' placeholder='First Name *' type='test' :class='{"err" : firstNameErr}'/>
-                </div>
-                <div class='last-name'>
-                  <input v-model='lastName' @change='lastNameErr = false' placeholder='Last Name *' type='text' :class='{"err" : lastNameErr}'/>
-                </div>
-                <div class='email'>
-                  <input v-model='email' @change='emailErr = false' placeholder='E-Mail *' type='email' :class='{"err" : emailErr}'/>
-                </div>
-                <div class='subject'>
-                  <input v-model='subject' placeholder='Subject' type='text'/>
+                <div class='basic-info'>
+                  <div class='first-name'>
+                    <input v-model='firstName' @change='firstNameErr = false' placeholder='First Name *' type='test' :class='{"err" : firstNameErr}'/>
+                  </div>
+                  <div class='last-name'>
+                    <input v-model='lastName' @change='lastNameErr = false' placeholder='Last Name *' type='text' :class='{"err" : lastNameErr}'/>
+                  </div>
+                  <div class='email'>
+                    <input v-model='email' @change='emailErr = false' placeholder='E-Mail *' type='email' :class='{"err" : emailErr}'/>
+                  </div>
+                  <div class='subject'>
+                    <input v-model='subject' placeholder='Subject' type='text'/>
+                  </div>
                 </div>
                 <textarea v-model='message' @change='messageErr = false' placeholder='Message *' rows='4' :class='{"message": true, "err" : messageErr}'/>
                 <button class='send' type='submit'>
@@ -427,6 +429,15 @@ export default {
   }
 }
 .form {
+  .basic-info {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
   &-response {
     font-size: .8rem;
     font-weight: 100;
@@ -438,6 +449,11 @@ export default {
   }
   .first-name, .last-name, .email, .subject {
     width: 100%;
+    flex-basis: 50%;
+    max-width: 50%;
+    flex: 0 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
     input {
       display: block;
       width: 100%;
@@ -455,6 +471,7 @@ export default {
       background-image: none;
       background-clip: padding-box;
       transition: all .4s ease-out;
+
       &.err {
         border-color: $color-red;
       }
@@ -670,6 +687,16 @@ export default {
 @media (max-width: $screen-lg-min) {
 }
 @media (max-width: $screen-md-min) {
+  .form {
+    .first-name, .last-name, .email, .subject {
+      width: 100%;
+      flex-basis: 100%;
+      max-width: 100%;
+      flex: 0 0 auto;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
 }
 @media (max-width: $screen-sm-min) {
   .contact {
