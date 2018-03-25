@@ -49,7 +49,7 @@
                   </div>
                 </button>
               </form>
-              <div class='form-response'>
+              <div v-if='emailSent' class='form-response'>
                 Email has been sent
               </div>
             </div>
