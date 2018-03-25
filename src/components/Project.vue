@@ -5,7 +5,7 @@
     <transition appear appear-active-class='project-appear-active' appear-class='project-appear' appear-to-class='project-appear-to'>
       <section class='project'>
         <div class='project-content'>
-          <img class='main-photo' :src='projects[$route.params.project].mainPhoto' style='width: 100%'/>
+          <img class='main-photo' :src='projects[$route.params.project].mainPhoto'/>
           <h1 class='name'>{{ projects[$route.params.project].name}}</h1>
           <h5 class='subtitle'>
             {{ projects[$route.params.project].course }}
@@ -260,19 +260,19 @@ export default {
     transition: 1s ease;
   }
   .name {
-    transition-delay: .5s;
+    transition-delay: 1s;
   }
   .subtitle {
-    transition-delay: .7s;
+    transition-delay: 1.2s;
   }
   .description {
-    transition-delay: 1.5s;
+    transition-delay: 2s;
   }
   .photo-gallery > img {
     transition: 1s ease;
     transition-delay: 1s;
   }
-  transition: 2.5s;
+  transition: 3s;
   // .panel {
   //   opacity: 1;
   //   display: block;
@@ -297,7 +297,6 @@ export default {
     opacity: 0;
   }
 }
-
 .project {
   position: relative;
   overflow: hidden;
@@ -314,6 +313,9 @@ export default {
   min-height: 100vh;
   width: 80%;
   text-align: center;
+}
+.main-photo {
+  width: 70%;
 }
 .name {
   color: $color-greyDarker;
