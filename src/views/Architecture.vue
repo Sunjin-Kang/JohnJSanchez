@@ -386,7 +386,7 @@ export default {
     .project-info::before {
       transform: translate3d(100%, -1px, 0);
       opacity: 1;
-      transition: transform .6s cubic-bezier(1,0,0,1), opacity 0s cubic-bezier(.19,1,.22,1);
+      transition: transform .7s cubic-bezier(1,0,0,1), opacity 0s cubic-bezier(.19,1,.22,1);
     }
     img {
       filter: grayscale(0);

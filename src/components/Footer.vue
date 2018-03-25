@@ -6,7 +6,6 @@
         <p>
         Copyright © John J Sanchez 2018
         </p>
-        <br/>
         <p class='credits'>
           Design by <a href='http://sunjin.io' target='_blank' class='link'>Sun Jin<img :src='sLogo' class='s-logo'/></a>
         </p>
@@ -51,6 +50,10 @@ export default {
   width: 50%;
   left: 50%;
   bottom: 0;
+  p {
+    line-height: 2;
+    font-size: .9rem;
+  }
 }
 .credits {
   position: relative;

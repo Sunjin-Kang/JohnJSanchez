@@ -57,7 +57,7 @@
             </div>
           </div>
         </div>
-        <div class='contact-right'>
+        <div :class='showForm ? "contact-right show": "contact-right"'>
           <div class='greeting'>
             <div class='greeting-message'>
               <div class='greeting-message__header'>
@@ -362,6 +362,16 @@ export default {
   &-right {
     left: 50%;
     background-color: white;
+    &.show {
+      .greeting-message__info, p, a, h3 {
+        color: $color-greyLighter;
+        cursor: default;
+        transition: .5s ease;
+      }
+      .arrow::before, .arrow::after {
+        background-color: $color-greyLighter;
+      }
+    }
   }
 }
 .contact-left {
@@ -642,9 +652,11 @@ export default {
       .arrow {
         transform: translateX(100%);
         &::before {
+          background-color: $color-greyDarker;
           transform: translate3d(0,2px,0) rotate(-45deg);
         }
         &::after {
+          background-color: $color-greyDarker;
           transform: translate3d(0,-2px,0) rotate(45deg);
         }
       }
